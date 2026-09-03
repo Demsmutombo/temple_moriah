@@ -66,7 +66,7 @@ function isCurrent(p) {
 }
 .is-current {
   border-color: transparent;
-  background: #fff;
+  background: var(--neu-chip-on);
   box-shadow: var(--neu-raised-sm);
   color: var(--color-ink);
 }

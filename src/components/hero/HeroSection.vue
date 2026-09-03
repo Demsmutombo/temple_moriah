@@ -135,7 +135,7 @@ const stats = [
   line-height: 1;
   color: #fff;
   background: linear-gradient(180deg, #5aa0f0 0%, #4a90e2 100%);
-  box-shadow: 4px 6px 10px #c5d0e0;
+  box-shadow: var(--neu-raised-sm);
   border: 3px solid var(--neu-bg);
 }
 .hero-avatar:hover :deep(.site-logo),
@@ -219,7 +219,7 @@ const stats = [
   line-height: 1;
   color: #fff;
   background: linear-gradient(180deg, #5aa0f0 0%, #4a90e2 100%);
-  box-shadow: 6px 8px 14px #c5d0e0, -4px -4px 10px #ffffff;
+  box-shadow: var(--neu-fab-shadow);
 }
 .hero-tabs {
   display: grid;

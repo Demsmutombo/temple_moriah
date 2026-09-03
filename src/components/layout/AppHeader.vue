@@ -3,6 +3,7 @@ import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { navItems, site } from '@/data'
 import SiteLogo from '@/components/common/SiteLogo.vue'
+import ThemeToggle from '@/components/common/ThemeToggle.vue'
 
 const route = useRoute()
 const open = ref(false)
@@ -56,15 +57,18 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
         </div>
       </nav>
 
-      <button
-        type="button"
-        class="neu-icon xl:hidden text-sm font-semibold"
-        :aria-expanded="open"
-        aria-controls="mobile-nav"
-        @click="open = !open"
-      >
-        {{ open ? '×' : '☰' }}
-      </button>
+      <div class="bar-end">
+        <ThemeToggle variant="icon" />
+        <button
+          type="button"
+          class="neu-icon xl:hidden text-sm font-semibold"
+          :aria-expanded="open"
+          aria-controls="mobile-nav"
+          @click="open = !open"
+        >
+          {{ open ? '×' : '☰' }}
+        </button>
+      </div>
     </div>
 
     <div v-if="open" id="mobile-nav" class="mobile">
@@ -173,6 +177,12 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 .submenu-link.router-link-active {
   color: var(--neu-blue);
   box-shadow: var(--neu-inset);
+}
+.bar-end {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
 }
 .mobile {
   max-width: 80rem;

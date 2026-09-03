@@ -121,7 +121,7 @@ async function onCopy() {
 .sheet-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(36, 52, 74, 0.32);
+  background: var(--neu-overlay);
   border: 0;
 }
 .sheet {
@@ -188,7 +188,7 @@ async function onCopy() {
   aspect-ratio: 1;
   margin: 0 auto 1.1rem;
   border-radius: 28px;
-  background: #fff;
+  background: var(--neu-chip-on);
   box-shadow: var(--neu-raised);
 }
 .mark-card :deep(.site-logo--lg) {
@@ -261,6 +261,6 @@ async function onCopy() {
 .sheet-fab.is-active .sheet-fab-icon {
   color: #fff;
   background: linear-gradient(180deg, #5aa0f0 0%, #4a90e2 100%);
-  box-shadow: 6px 8px 14px #c5d0e0, -4px -4px 10px #ffffff;
+  box-shadow: var(--neu-fab-shadow);
 }
 </style>

@@ -67,7 +67,7 @@ onUnmounted(() => {
   z-index: 9999;
   display: grid;
   place-items: center;
-  background: #ffffff;
+  background: var(--neu-bg);
   cursor: pointer;
   touch-action: manipulation;
 }
@@ -80,7 +80,7 @@ onUnmounted(() => {
   aspect-ratio: 1;
   border-radius: 22%;
   overflow: hidden;
-  background: #eaf2fb;
+  background: var(--neu-light);
   transform-origin: center center;
   animation: splash-zoom-in 1.15s cubic-bezier(0.22, 1, 0.36, 1) both;
 }

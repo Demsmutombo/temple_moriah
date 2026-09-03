@@ -20,16 +20,51 @@
 }
 
 :root {
+  color-scheme: light;
   --neu-bg: #e8eef6;
   --neu-dark: #c5d0e0;
   --neu-light: #ffffff;
   --neu-blue: #4a90e2;
   --neu-blue-2: #5aa0f0;
+  --neu-chip-on: #ffffff;
   --neu-raised: 10px 10px 20px #c5d0e0, -10px -10px 20px #ffffff;
   --neu-raised-sm: 6px 6px 12px #c5d0e0, -6px -6px 12px #ffffff;
   --neu-inset: inset 6px 6px 12px #c5d0e0, inset -6px -6px 12px #ffffff;
+  --neu-btn-primary-shadow: 8px 8px 16px #c5d0e0, -6px -6px 12px #ffffff, inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  --neu-fab-shadow: 8px 12px 20px #c5d0e0, -4px -4px 12px #ffffff;
+  --neu-overlay: rgba(36, 52, 74, 0.4);
+  --neu-tabbar-shadow: 0 -10px 28px rgba(36, 52, 74, 0.08);
   --neu-radius: 28px;
   --neu-radius-sm: 20px;
+}
+
+html.theme-dark {
+  color-scheme: dark;
+  --color-ivory: #1b2433;
+  --color-parchment: #1b2433;
+  --color-stone: #243044;
+  --color-sand: #2c3a50;
+  --color-ink: #e8eef6;
+  --color-ink-soft: #b7c4d6;
+  --color-muted: #8b9bb4;
+  --color-ash: #7d8ca3;
+  --color-gold: #7ab0ec;
+  --color-gold-pale: #8cbcf2;
+  --color-ember: #5a92d4;
+  --color-line: rgba(122, 176, 236, 0.18);
+  --neu-bg: #1b2433;
+  --neu-dark: #121924;
+  --neu-light: #273348;
+  --neu-blue: #7ab0ec;
+  --neu-blue-2: #8cbcf2;
+  --neu-chip-on: #2c3a50;
+  --neu-raised: 10px 10px 20px #121924, -8px -8px 16px #273348;
+  --neu-raised-sm: 6px 6px 12px #121924, -5px -5px 10px #273348;
+  --neu-inset: inset 6px 6px 12px #121924, inset -5px -5px 10px #273348;
+  --neu-btn-primary-shadow: 8px 8px 16px #121924, -6px -6px 12px #273348, inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --neu-fab-shadow: 8px 12px 20px #121924, -4px -4px 12px #273348;
+  --neu-overlay: rgba(8, 12, 20, 0.55);
+  --neu-tabbar-shadow: 0 -10px 28px rgba(0, 0, 0, 0.35);
 }
 
 @layer base {
@@ -141,8 +176,8 @@
     border-radius: 999px;
     padding: 0.95rem 1.6rem;
     color: #fff;
-    background: linear-gradient(180deg, #5aa0f0 0%, #4a90e2 100%);
-    box-shadow: 8px 8px 16px #c5d0e0, -6px -6px 12px #ffffff, inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    background: linear-gradient(180deg, var(--neu-blue-2) 0%, var(--neu-blue) 100%);
+    box-shadow: var(--neu-btn-primary-shadow);
     transition: transform 0.2s ease, filter 0.2s ease;
   }
 
@@ -171,8 +206,8 @@
 
   .neu-chip.is-active {
     color: #fff;
-    background: linear-gradient(180deg, #5aa0f0 0%, #4a90e2 100%);
-    box-shadow: 6px 6px 12px #c5d0e0, -4px -4px 10px #ffffff;
+    background: linear-gradient(180deg, var(--neu-blue-2) 0%, var(--neu-blue) 100%);
+    box-shadow: var(--neu-raised-sm);
   }
 
   .mobile-page {
@@ -202,6 +237,9 @@
     background: var(--neu-bg);
     color: var(--neu-blue);
     box-shadow: var(--neu-raised-sm);
+    border: 0;
+    padding: 0;
+    cursor: pointer;
   }
 
   .neu-well {
@@ -233,7 +271,7 @@
     height: 6px;
     width: 48px;
     border-radius: 999px;
-    background: linear-gradient(90deg, #5aa0f0, #4a90e2);
+    background: linear-gradient(90deg, var(--neu-blue-2), var(--neu-blue));
     box-shadow: var(--neu-raised-sm);
   }
 
@@ -309,7 +347,8 @@
   .neu-chip.is-active {
     border-color: transparent;
     color: var(--color-ink);
-    background: #fff;
+    background: var(--neu-chip-on);
+    color: var(--color-ink);
     box-shadow: var(--neu-raised-sm);
   }
 

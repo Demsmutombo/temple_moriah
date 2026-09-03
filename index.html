@@ -13,6 +13,20 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Temple Moriah" />
     <meta name="application-name" content="Temple Moriah" />
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem('tm-theme') === 'dark') {
+            document.documentElement.classList.add('theme-dark')
+            document.documentElement.style.colorScheme = 'dark'
+            var themeMeta = document.querySelector('meta[name="theme-color"]')
+            if (themeMeta) themeMeta.setAttribute('content', '#1B2433')
+            var barMeta = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]')
+            if (barMeta) barMeta.setAttribute('content', 'black-translucent')
+          }
+        } catch (e) {}
+      })()
+    </script>
     <link
       rel="apple-touch-startup-image"
       href="/splash/apple-splash-1290x2796.png"

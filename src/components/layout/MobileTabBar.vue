@@ -114,7 +114,7 @@ const plusActive = computed(() => {
   height: calc(4.55rem + env(safe-area-inset-bottom, 0px));
   padding: 0.35rem 0.2rem calc(0.42rem + env(safe-area-inset-bottom, 0px));
   background: var(--neu-bg);
-  box-shadow: 0 -10px 28px rgba(36, 52, 74, 0.08);
+  box-shadow: var(--neu-tabbar-shadow);
 }
 .tab {
   display: flex;
@@ -167,8 +167,8 @@ const plusActive = computed(() => {
   width: 3.85rem;
   height: 3.85rem;
   border-radius: 50%;
-  background: #fff;
-  box-shadow: 8px 12px 20px #c5d0e0, -4px -4px 12px #ffffff;
+  background: var(--neu-light);
+  box-shadow: var(--neu-fab-shadow);
   border: 5px solid var(--neu-bg);
 }
 .center-btn img {
@@ -178,8 +178,7 @@ const plusActive = computed(() => {
 }
 .tab-center.is-active .center-btn {
   box-shadow:
-    8px 12px 20px #c5d0e0,
-    -4px -4px 12px #ffffff,
+    var(--neu-fab-shadow),
     0 0 0 3px color-mix(in srgb, var(--neu-blue) 30%, transparent);
 }
 .tab-center .tab-label {

@@ -54,7 +54,7 @@ onUnmounted(() => {
 .modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(36, 52, 74, 0.45);
+  background: var(--neu-overlay);
   border: 0;
   cursor: pointer;
 }

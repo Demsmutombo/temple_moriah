@@ -1,6 +1,7 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { useMobileNav } from '@/composables/useMobileNav'
+import ThemeToggle from '@/components/common/ThemeToggle.vue'
 
 const router = useRouter()
 const { isHome, pageTitle, openMore } = useMobileNav()
@@ -29,13 +30,16 @@ function goBack() {
 
       <h1 class="topbar-title">{{ isHome ? 'Temple Moriah' : pageTitle }}</h1>
 
-      <button type="button" class="topbar-btn" aria-label="Menu" @click="openMore">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
-          <circle cx="12" cy="6" r="1.55" fill="currentColor" />
-          <circle cx="12" cy="12" r="1.55" fill="currentColor" />
-          <circle cx="12" cy="18" r="1.55" fill="currentColor" />
-        </svg>
-      </button>
+      <div class="topbar-actions">
+        <ThemeToggle />
+        <button type="button" class="topbar-btn" aria-label="Menu" @click="openMore">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+            <circle cx="12" cy="6" r="1.55" fill="currentColor" />
+            <circle cx="12" cy="12" r="1.55" fill="currentColor" />
+            <circle cx="12" cy="18" r="1.55" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
     </div>
   </header>
 </template>
@@ -56,7 +60,7 @@ function goBack() {
 }
 .topbar-inner {
   display: grid;
-  grid-template-columns: 2.6rem 1fr 2.6rem;
+  grid-template-columns: 2.6rem 1fr auto;
   align-items: center;
   min-height: 3.15rem;
   padding: 0.35rem 1rem;
@@ -78,6 +82,12 @@ function goBack() {
 .topbar.is-home .topbar-title {
   color: transparent;
 }
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  justify-self: end;
+}
 .topbar-btn {
   display: grid;
   place-items: center;
@@ -91,9 +101,6 @@ function goBack() {
   border: 0;
   padding: 0;
 }
-.topbar-inner > .topbar-btn:last-child {
-  justify-self: end;
-}
 .topbar-ghost {
   visibility: hidden;
   box-shadow: none;
@@ -101,7 +108,8 @@ function goBack() {
 .topbar-btn:active {
   box-shadow: var(--neu-inset);
 }
-.topbar.is-home .topbar-btn {
+.topbar.is-home .topbar-btn,
+.topbar.is-home :deep(.theme-round) {
   background: color-mix(in srgb, var(--neu-bg) 88%, transparent);
 }
 </style>
