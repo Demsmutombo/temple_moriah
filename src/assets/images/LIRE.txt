@@ -1,0 +1,2 @@
+Déposez ici les photographies officielles du Temple (façade, chantier, dédicace, vie, épreuve, reconstruction).
+Les fichiers seront référencés depuis src/data/media.js.

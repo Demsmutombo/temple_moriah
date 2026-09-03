@@ -1,0 +1,141 @@
+/**
+ * Temple Moriah — données institutionnelles
+ *
+ * Règle : ne jamais inventer un fait. Distinguer
+ * fait / parole / témoignage / citation biblique / narration.
+ */
+
+export const CONTENT_KINDS = {
+  fait: 'Fait historique',
+  parole: 'Parole',
+  temoignage: 'Témoignage',
+  citation_biblique: 'Citation biblique',
+  narration: 'Narration éditoriale',
+}
+
+export const site = {
+  name: 'Temple Moriah',
+  church: 'Shekinah Tabernacle',
+  city: 'Kinshasa',
+  commune: 'Matete',
+  quartier: 'Debonhomme',
+  address: '18 Boulevard Lumumba, Matete, Kinshasa',
+  country: 'République démocratique du Congo',
+  pastor: {
+    name: 'Révérend Pasteur Richard Diyoka Nsanguluja',
+    shortName: 'Pasteur Richard Diyoka',
+    title: 'Pasteur de Shekinah Tabernacle',
+  },
+  email: 'shekinahrdc@gmail.com',
+  officialSite: 'https://shekinahgospel.org/',
+  tagline: 'Un bâtiment peut être détruit. Une mémoire ne doit pas disparaître.',
+}
+
+export const periods = [
+  {
+    id: 'vision',
+    roman: 'I',
+    title: 'La vision',
+    years: 'Origine',
+    path: '/histoire',
+    summary: 'L’origine d’un projet spirituel et communautaire, avant même les murs.',
+  },
+  {
+    id: 'construction',
+    roman: 'II',
+    title: 'La construction',
+    years: '2011 — 2018',
+    path: '/construction',
+    summary: 'Les années de chantier, de sacrifice et d’édification du Temple.',
+  },
+  {
+    id: 'vie',
+    roman: 'III',
+    title: 'La vie et la mémoire',
+    years: '2018 — 17 mai 2026',
+    path: '/vie-du-temple',
+    summary: 'La dédicace, les cultes, les visites, les archives d’une maison de rassemblement.',
+  },
+  {
+    id: 'epreuve',
+    roman: 'IV',
+    title: 'De la cendre à la reconstruction',
+    years: '17 mai 2026 — aujourd’hui',
+    path: '/epreuve',
+    summary: 'L’incendie, le culte à ciel ouvert, la solidarité et le nouveau chapitre.',
+  },
+]
+
+export const navItems = [
+  { label: 'Accueil', path: '/' },
+  {
+    label: 'L’Histoire',
+    path: '/histoire',
+    children: [
+      { label: 'La vision', path: '/histoire' },
+      { label: 'La construction', path: '/construction' },
+      { label: 'La dédicace', path: '/dedicace' },
+      { label: 'La vie du Temple', path: '/vie-du-temple' },
+    ],
+  },
+  {
+    label: 'L’Épreuve',
+    path: '/epreuve',
+    children: [
+      { label: 'Le 17 mai 2026', path: '/epreuve' },
+      { label: 'Après l’incendie', path: '/apres-incendie' },
+      { label: 'Ils sont venus nous consoler', path: '/consolation' },
+    ],
+  },
+  {
+    label: 'Les Voix',
+    path: '/voix',
+    children: [
+      { label: 'Paroles du pasteur', path: '/voix/pasteur' },
+      { label: 'Témoignages', path: '/voix/temoignages' },
+      { label: 'Visiteurs', path: '/voix/visiteurs' },
+    ],
+  },
+  {
+    label: 'Archives',
+    path: '/archives',
+    children: [
+      { label: 'Toutes les archives', path: '/archives' },
+      { label: 'Galerie photo', path: '/galerie' },
+      { label: 'Médiathèque', path: '/mediatheque' },
+    ],
+  },
+  { label: 'Reconstruction', path: '/reconstruction' },
+  { label: 'Livre de mémoire', path: '/livre-de-memoire' },
+]
+
+export const biblicalReferences = [
+  {
+    id: 'ps122',
+    reference: 'Psaume 122:1',
+    text: 'Je suis joyeux quand on me dit : Allons à la maison de l’Éternel !',
+    context: 'Associé, sur le site officiel de Shekinah Tabernacle, à la dédicace du Temple Moriah en 2018.',
+    kind: 'citation_biblique',
+  },
+  {
+    id: 'lam2',
+    reference: 'Lamentations 2:1-3, 6-8, 11',
+    text: null,
+    context: 'Texte associé, sur le site officiel, à la page consacrée au Temple Moriah le 17 mai 2026.',
+    kind: 'citation_biblique',
+  },
+  {
+    id: 'esa64',
+    reference: 'Ésaïe 64:1-11',
+    text: null,
+    context: 'Texte associé, sur le site officiel, à la mémoire du 17 mai 2026.',
+    kind: 'citation_biblique',
+  },
+  {
+    id: 'neh2',
+    reference: 'Néhémie 2:17-18',
+    text: 'Venez, reconstruisons les murs de Jérusalem, et nous ne serons plus dans l’humiliation.',
+    context: 'Cité sur le site officiel dans l’appel à rebâtir le Temple Moriah.',
+    kind: 'citation_biblique',
+  },
+]

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" fill="none">
+  <title>Temple Moriah  embl�me de la fa�ade</title>
+  <path d="M120 10 V28" stroke="currentColor" stroke-width="1.4"/>
+  <circle cx="120" cy="32" r="3" fill="currentColor"/>
+  <path d="M120 38 L28 92 H212 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="miter"/>
+  <path d="M120 52 L52 92 H188 Z" stroke="currentColor" stroke-width="0.8" opacity="0.45"/>
+  <rect x="32" y="92" width="176" height="14" stroke="currentColor" stroke-width="1.4"/>
+  <path d="M48 106 V214 M72 106 V214 M96 106 V214 M144 106 V214 M168 106 V214 M192 106 V214" stroke="currentColor" stroke-width="1.5"/>
+  <rect x="110" y="156" width="20" height="58" stroke="currentColor" stroke-width="1.4"/>
+  <path d="M24 214 H216" stroke="currentColor" stroke-width="1.8"/>
+  <path d="M16 226 H224" stroke="currentColor" stroke-width="1.4"/>
+  <path d="M8 238 H232" stroke="currentColor" stroke-width="1.4"/>
+</svg>

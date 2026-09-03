@@ -1,0 +1,8 @@
+node_modules
+dist
+.DS_Store
+*.local
+.vscode
+.idea
+src/assets/images/enfeu.html
+src/assets/images/enfeu_files/
