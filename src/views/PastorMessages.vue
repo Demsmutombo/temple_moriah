@@ -4,6 +4,7 @@ import PastorMessageCard from '@/components/testimony/PastorMessageCard.vue'
 import PersonRow from '@/components/common/PersonRow.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
+import ChapterVideos from '@/components/video/ChapterVideos.vue'
 import { pastorMessages } from '@/data'
 </script>
 
@@ -15,6 +16,7 @@ import { pastorMessages } from '@/data'
     />
     <section class="mobile-page">
       <MobileSectionHead title="Suggéré pour vous" />
+      <ChapterVideos category="predications" />
       <SuggestList>
         <PersonRow
           v-for="m in pastorMessages"
@@ -27,7 +29,8 @@ import { pastorMessages } from '@/data'
       </SuggestList>
     </section>
     <section class="hidden lg:block mx-auto max-w-6xl px-5 py-16">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <ChapterVideos category="predications" />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
         <PastorMessageCard v-for="m in pastorMessages" :key="`d-${m.id}`" :message="m" />
       </div>
     </section>

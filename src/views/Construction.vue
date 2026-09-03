@@ -8,6 +8,7 @@ import ScrollReveal from '@/components/common/ScrollReveal.vue'
 import AccordionRow from '@/components/common/AccordionRow.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
+import ChapterVideos from '@/components/video/ChapterVideos.vue'
 import { constructionStages } from '@/data'
 </script>
 
@@ -33,6 +34,7 @@ import { constructionStages } from '@/data'
           <p class="mt-2 text-caption">{{ stage.date }}</p>
         </AccordionRow>
       </SuggestList>
+      <ChapterVideos category="construction" />
       <div class="mobile-cta">
         <RouterLink to="/dedicace" class="neu-btn-primary">Lire la dédicace</RouterLink>
       </div>
@@ -72,6 +74,7 @@ import { constructionStages } from '@/data'
       </ol>
 
       <EmptyArchive class="mt-10" title="Galerie photographique du chantier" text="Les images de la construction — fondations, élévation, colonnes, achèvement — n’ont pas encore été déposées dans cette plateforme." />
+      <ChapterVideos category="construction" />
     </section>
 
     <section class="hidden lg:block px-5 pb-16">

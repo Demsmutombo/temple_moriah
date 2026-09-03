@@ -9,9 +9,9 @@ function initial(item) {
 }
 
 function itemPath(item) {
-  if (item.type === 'vidéos') return '/mediatheque'
+  if (item.type === 'vidéos') return `/mediatheque/${item.id}`
   if (item.type === 'photographies') return '/galerie'
-  if (item.type === 'discours') return '/voix/pasteur'
+  if (item.type === 'discours') return item.id ? `/voix/pasteur/${item.id}` : '/voix/pasteur'
   return '/archives'
 }
 </script>
@@ -21,7 +21,7 @@ function itemPath(item) {
     <span class="row-avatar" aria-hidden="true">{{ initial(item) }}</span>
     <div class="row-body">
       <h3 class="row-title">{{ item.title }}</h3>
-      <p class="row-sub">{{ item.type || item.category }} · {{ item.date }}</p>
+      <p class="row-sub">{{ item.categoryLabel || item.type }}</p>
     </div>
     <span class="row-follow">Ouvrir</span>
   </RouterLink>

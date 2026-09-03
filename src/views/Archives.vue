@@ -7,7 +7,7 @@ import ArchiveCard from '@/components/archive/ArchiveCard.vue'
 import EmptyArchive from '@/components/common/EmptyArchive.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
-import { documents, photos, videos, pastorMessages } from '@/data'
+import { documents, photos, youtubeVideos, pastorMessages, videoCategoryLabel } from '@/data'
 
 const query = ref('')
 const type = ref('all')
@@ -32,15 +32,15 @@ const allArchives = computed(() => {
       description: p.caption || p.context,
       search: `${p.title} ${p.caption} ${p.context}`,
     })),
-    ...videos.map((v) => ({
+    ...youtubeVideos.map((v) => ({
       id: v.id,
       type: 'vidéos',
       title: v.title,
       date: v.displayDate,
       category: v.category,
-      status: v.status,
+      categoryLabel: videoCategoryLabel(v.category),
       description: v.description,
-      search: `${v.title} ${v.description} ${v.speaker}`,
+      search: `${v.title} ${v.speaker || ''} ${videoCategoryLabel(v.category)}`,
     })),
     ...pastorMessages.map((m) => ({
       id: m.id,

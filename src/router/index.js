@@ -137,6 +137,14 @@ const routes = [
     },
   },
   {
+    path: '/videos',
+    redirect: '/mediatheque',
+  },
+  {
+    path: '/videos/:id',
+    redirect: (to) => `/mediatheque/${to.params.id}`,
+  },
+  {
     path: '/mediatheque',
     name: 'videos',
     component: () => import('@/views/Videos.vue'),

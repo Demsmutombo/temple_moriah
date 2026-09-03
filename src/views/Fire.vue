@@ -8,6 +8,7 @@ import QuoteBlock from '@/components/common/QuoteBlock.vue'
 import AccordionRow from '@/components/common/AccordionRow.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
+import ChapterVideos from '@/components/video/ChapterVideos.vue'
 import { fireRecord, pastorMessages, biblicalReferences } from '@/data'
 
 const firstQuote = pastorMessages.find((m) => m.id === 'pm-enquete-17-mai')
@@ -55,6 +56,8 @@ const fireItems = [
           <p v-for="(entry, i) in item.items" :key="`i-${i}`" class="mb-2">{{ entry.text }}</p>
         </AccordionRow>
       </SuggestList>
+      <ChapterVideos category="incendie" />
+      <ChapterVideos category="epreuves" />
       <div class="mobile-cta">
         <RouterLink to="/apres-incendie" class="neu-btn-primary">Les jours qui ont suivi</RouterLink>
       </div>
@@ -101,8 +104,8 @@ const fireItems = [
       </section>
 
       <section>
-        <h2 class="font-display text-3xl mb-6">Vidéos</h2>
-        <EmptyArchive title="Captations" text="Les vidéos du jour, lorsqu’elles seront versées, apparaîtront ici sans montage sensationnaliste." />
+        <ChapterVideos category="incendie" />
+        <ChapterVideos category="epreuves" />
       </section>
 
       <section>

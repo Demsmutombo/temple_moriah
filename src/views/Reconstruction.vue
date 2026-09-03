@@ -11,6 +11,7 @@ import SiteLogo from '@/components/common/SiteLogo.vue'
 import AccordionRow from '@/components/common/AccordionRow.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
+import ChapterVideos from '@/components/video/ChapterVideos.vue'
 import { reconstruction, biblicalReferences } from '@/data'
 
 const neh = biblicalReferences.find((b) => b.id === 'neh2')
@@ -37,6 +38,7 @@ const neh = biblicalReferences.find((b) => b.id === 'neh2')
           <p>{{ event.description }}</p>
         </AccordionRow>
       </SuggestList>
+      <ChapterVideos category="reconstruction" />
       <div class="mobile-cta">
         <RouterLink to="/livre-de-memoire" class="neu-btn-primary">Laisser un témoignage</RouterLink>
       </div>
@@ -93,7 +95,9 @@ const neh = biblicalReferences.find((b) => b.id === 'neh2')
         <QuoteBlock :text="neh.text" :attribution="neh.reference" :note="neh.context" />
       </div>
 
-      <EmptyArchive title="Mobilisation et étapes futures" text="Les objectifs détaillés du chantier seront publiés lorsqu’ils seront communiqués officiellement, sans chiffres non fournis." />
+      <ChapterVideos category="reconstruction" />
+
+      <EmptyArchive title="Mobilisation et étapes futures" text="Les objectifs détaillés du chantier seront publiés lorsqu’ils seront communiqués, sans chiffres non fournis." />
     </section>
 
     <section class="hidden lg:block px-5 pb-20">

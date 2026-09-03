@@ -8,7 +8,8 @@ import PeriodNav from '@/components/navigation/PeriodNav.vue'
 import PersonRow from '@/components/common/PersonRow.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
-import { historyEvents, periods, photos, site } from '@/data'
+import VideoSections from '@/components/video/VideoSections.vue'
+import { historyEvents, periods, site, youtubeVideos } from '@/data'
 
 const introLines = [
   { title: 'Une vision.', text: 'Avant les murs, une assemblée et une vocation.', path: '/histoire' },
@@ -19,16 +20,7 @@ const introLines = [
   { title: 'Une reconstruction.', text: 'La mémoire continue. Un nouveau chapitre s’ouvre.', path: '/reconstruction' },
 ]
 
-const gridTiles = [
-  ...photos.slice(0, 6),
-  ...periods.map((p) => ({
-    id: `tile-${p.id}`,
-    title: p.title,
-    year: p.years,
-    path: p.path,
-    src: null,
-  })),
-].slice(0, 6)
+const mediaVideos = youtubeVideos
 </script>
 
 <template>
@@ -37,17 +29,10 @@ const gridTiles = [
 
     <section class="home-mobile lg:hidden">
       <div class="mobile-page !pt-1">
-        <ul class="media-grid">
-          <li v-for="tile in gridTiles" :key="tile.id">
-            <RouterLink :to="tile.path || '/galerie'" class="media-tile">
-              <img v-if="tile.src" :src="tile.src" :alt="tile.title" />
-              <span v-else class="media-fallback">
-                <span class="text-meta">{{ tile.year || tile.date }}</span>
-                <span class="media-title">{{ tile.title }}</span>
-              </span>
-            </RouterLink>
-          </li>
-        </ul>
+        <MobileSectionHead title="Médias">
+          <RouterLink to="/mediatheque" class="text-caption text-gold">Tout voir</RouterLink>
+        </MobileSectionHead>
+        <VideoSections :videos="mediaVideos" variant="tile" />
       </div>
 
       <div class="mobile-page !pt-4">
@@ -102,6 +87,18 @@ const gridTiles = [
       </section>
 
       <PeriodNav />
+
+      <section class="mx-auto max-w-6xl px-5 pb-16">
+        <SectionHeading
+          eyebrow="Médiathèque"
+          title="Les médias de l’archive"
+          subtitle="Visites, consolation, paroles du pasteur, puis le fil de l’histoire."
+        />
+        <VideoSections :videos="mediaVideos" />
+        <div class="mt-8 text-center">
+          <RouterLink to="/mediatheque" class="neu-btn">Toute la médiathèque</RouterLink>
+        </div>
+      </section>
 
       <section class="mx-auto max-w-6xl px-5 py-16 md:py-24">
         <SectionHeading

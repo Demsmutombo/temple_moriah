@@ -4,6 +4,7 @@ import { onMounted, onUnmounted, watch } from 'vue'
 const props = defineProps({
   open: { type: Boolean, default: false },
   title: { type: String, default: '' },
+  wide: { type: Boolean, default: false },
 })
 const emit = defineEmits(['close'])
 
@@ -29,7 +30,7 @@ onUnmounted(() => {
   <Teleport to="body">
     <div v-if="open" class="modal-root" role="dialog" aria-modal="true" :aria-label="title || 'Fenêtre'">
       <button class="modal-backdrop" type="button" aria-label="Fermer" @click="emit('close')" />
-      <div class="modal-panel">
+      <div class="modal-panel" :class="{ 'is-wide': wide }">
         <header class="flex items-center justify-between gap-4 mb-4">
           <h2 v-if="title" class="font-display text-2xl">{{ title }}</h2>
           <button type="button" class="text-meta text-muted hover:text-ink" @click="emit('close')">
@@ -67,5 +68,8 @@ onUnmounted(() => {
   padding: 1.5rem;
   border-radius: 28px;
   box-shadow: var(--neu-raised);
+}
+.modal-panel.is-wide {
+  width: min(960px, 100%);
 }
 </style>

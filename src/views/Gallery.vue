@@ -4,9 +4,10 @@ import PageHero from '@/components/layout/PageHero.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
 import CategoryFilter from '@/components/common/CategoryFilter.vue'
 import PhotoGallery from '@/components/gallery/PhotoGallery.vue'
+import VideoSections from '@/components/video/VideoSections.vue'
 import EmptyArchive from '@/components/common/EmptyArchive.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
-import { photos, photoCategories } from '@/data'
+import { photos, photoCategories, youtubeVideos } from '@/data'
 
 const query = ref('')
 const category = ref('all')
@@ -31,7 +32,11 @@ const filtered = computed(() => {
       <div class="mt-3">
         <CategoryFilter v-model="category" :items="photoCategories" />
       </div>
-      <MobileSectionHead title="Suggéré pour vous" class="mt-4 lg:hidden" />
+      <MobileSectionHead title="Vidéos" class="mt-4 lg:hidden" />
+      <div class="mt-1 lg:mt-10">
+        <VideoSections :videos="youtubeVideos" />
+      </div>
+      <MobileSectionHead title="Photographies" class="mt-6 lg:hidden" />
       <div class="mt-1 lg:mt-10">
         <PhotoGallery v-if="filtered.length" :photos="filtered" />
         <EmptyArchive

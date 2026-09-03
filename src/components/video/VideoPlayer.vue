@@ -1,13 +1,22 @@
 <script setup>
-defineProps({
+import { computed } from 'vue'
+import YouTubeEmbed from '@/components/video/YouTubeEmbed.vue'
+import { youtubeIdFromUrl } from '@/utils/youtube'
+
+const props = defineProps({
   src: { type: String, default: '' },
+  youtubeId: { type: String, default: '' },
   title: { type: String, default: '' },
+  autoplay: { type: Boolean, default: false },
 })
+
+const id = computed(() => props.youtubeId || youtubeIdFromUrl(props.src))
 </script>
 
 <template>
   <div class="player">
-    <video v-if="src" :src="src" controls :title="title" class="w-full rounded-[22px]" />
+    <YouTubeEmbed v-if="id" :youtube-id="id" :title="title" :autoplay="autoplay" />
+    <video v-else-if="src" :src="src" controls :title="title" class="w-full rounded-[22px]" />
     <div v-else class="player-empty">
       <p class="text-meta">Captation à verser</p>
       <p class="font-display text-2xl mt-2">{{ title }}</p>

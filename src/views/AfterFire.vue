@@ -7,6 +7,7 @@ import ScrollReveal from '@/components/common/ScrollReveal.vue'
 import AccordionRow from '@/components/common/AccordionRow.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
+import ChapterVideos from '@/components/video/ChapterVideos.vue'
 import { afterFireEvents } from '@/data'
 
 const featured = afterFireEvents.find((e) => e.featured)
@@ -33,6 +34,7 @@ const featured = afterFireEvents.find((e) => e.featured)
           <p>{{ event.description }}</p>
         </AccordionRow>
       </SuggestList>
+      <ChapterVideos category="apres-incendie" />
       <div class="mobile-cta">
         <RouterLink to="/consolation" class="neu-btn-primary">Ils sont venus nous consoler</RouterLink>
       </div>
@@ -45,9 +47,8 @@ const featured = afterFireEvents.find((e) => e.featured)
         <p class="mt-5 max-w-2xl text-ink-soft text-lg leading-relaxed">{{ featured.description }}</p>
         <p class="mt-6 italic text-xl text-gold">« {{ featured.sermon.title }} »</p>
         <p class="text-caption mt-3">{{ featured.sermon.speaker }} · parole · archive à verser</p>
-        <div class="mt-8 grid sm:grid-cols-2 gap-4">
-          <EmptyArchive title="Photos" text="Photographies du rassemblement à verser." />
-          <EmptyArchive title="Vidéo" text="Captation de la prédication à verser." />
+        <div class="mt-8">
+          <ChapterVideos category="apres-incendie" />
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-const CACHE = 'temple-moriah-v2'
+const CACHE = 'temple-moriah-v3'
 
 const PRECACHE = [
   '/',
@@ -34,6 +34,16 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(request.url)
   if (url.origin !== self.location.origin) return
+
+  if (
+    url.pathname.startsWith('/src/') ||
+    url.pathname.startsWith('/@') ||
+    url.pathname.startsWith('/assets/') ||
+    url.pathname.includes('node_modules')
+  ) {
+    event.respondWith(fetch(request).catch(() => caches.match(request)))
+    return
+  }
 
   if (request.mode === 'navigate') {
     event.respondWith(

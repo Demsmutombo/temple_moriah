@@ -54,12 +54,12 @@ const stats = [
           </svg>
           Archives
         </RouterLink>
-        <RouterLink to="/voix" class="hero-tab">
+        <RouterLink to="/mediatheque" class="hero-tab">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
-            <circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="1.7" />
-            <path d="M5.5 19c.7-3 3-4.6 6.5-4.6S17.8 16 18.5 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+            <rect x="4" y="6" width="16" height="12" rx="2.5" stroke="currentColor" stroke-width="1.7" />
+            <path d="m10 9 6 3-6 3V9Z" fill="currentColor" />
           </svg>
-          Voix
+          Vidéos
         </RouterLink>
       </div>
     </div>
@@ -77,7 +77,7 @@ const stats = [
       </p>
       <div class="mt-8 flex flex-col sm:flex-row gap-3 sm:items-center justify-center">
         <RouterLink to="/histoire" class="neu-btn-primary">Découvrir l’histoire</RouterLink>
-        <RouterLink to="/archives" class="neu-btn">Explorer les archives</RouterLink>
+        <RouterLink to="/mediatheque" class="neu-btn">Voir les vidéos</RouterLink>
       </div>
     </div>
   </section>

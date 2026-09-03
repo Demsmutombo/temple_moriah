@@ -8,6 +8,7 @@ import ScrollReveal from '@/components/common/ScrollReveal.vue'
 import AccordionRow from '@/components/common/AccordionRow.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
+import ChapterVideos from '@/components/video/ChapterVideos.vue'
 import { dedication } from '@/data'
 </script>
 
@@ -31,6 +32,7 @@ import { dedication } from '@/data'
           :subtitle="s.body"
         />
       </SuggestList>
+      <ChapterVideos category="dedicace" />
       <div class="mobile-cta">
         <RouterLink to="/vie-du-temple" class="neu-btn-primary">Lire la vie du Temple</RouterLink>
       </div>
@@ -55,10 +57,9 @@ import { dedication } from '@/data'
         />
       </ScrollReveal>
 
+      <ChapterVideos category="dedicace" />
       <div class="grid gap-4">
-        <EmptyArchive title="Photographies" text="L’album officiel « 2018 - Dedicace Temple Moriah » est mentionné sur le site de Shekinah Tabernacle. Il n’a pas encore été versé ici." />
-        <EmptyArchive title="Vidéos, prédications et discours" text="Les captations, les paroles prononcées et les documents d’archives de la cérémonie restent à déposer." />
-        <EmptyArchive title="Personnes présentes" text="Aucune liste de personnalités n’est publiée en l’absence de source." />
+        <EmptyArchive title="Photographies" text="L’album de la dédicace n’a pas encore été versé ici." />
       </div>
     </article>
 
