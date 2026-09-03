@@ -12,6 +12,7 @@ function itemPath(item) {
   if (item.type === 'vidéos') return `/mediatheque/${item.id}`
   if (item.type === 'photographies') return '/galerie'
   if (item.type === 'discours') return item.id ? `/voix/pasteur/${item.id}` : '/voix/pasteur'
+  if (item.viewerType === 'pdf' || item.type === 'pdf') return `/archives/${item.id}`
   return '/archives'
 }
 </script>

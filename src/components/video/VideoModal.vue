@@ -24,6 +24,7 @@ const categoryName = computed(() => (shown.value ? videoCategoryLabel(shown.valu
         :key="video.id"
         :src="video.url"
         :youtube-id="video.youtubeId"
+        :poster="shown.thumbnail"
         :title="shown.title"
         autoplay
       />

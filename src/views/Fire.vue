@@ -9,6 +9,7 @@ import AccordionRow from '@/components/common/AccordionRow.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
 import ChapterVideos from '@/components/video/ChapterVideos.vue'
+import ChapterPhotos from '@/components/gallery/ChapterPhotos.vue'
 import { fireRecord, pastorMessages, biblicalReferences } from '@/data'
 
 const firstQuote = pastorMessages.find((m) => m.id === 'pm-enquete-17-mai')
@@ -58,6 +59,7 @@ const fireItems = [
       </SuggestList>
       <ChapterVideos category="incendie" />
       <ChapterVideos category="epreuves" />
+      <ChapterPhotos category="apres-incendie" />
       <div class="mobile-cta">
         <RouterLink to="/apres-incendie" class="neu-btn-primary">Les jours qui ont suivi</RouterLink>
       </div>
@@ -99,8 +101,7 @@ const fireItems = [
       </section>
 
       <section>
-        <h2 class="font-display text-3xl mb-6">Images d’archives</h2>
-        <EmptyArchive title="Photographies du 17 mai 2026" text="Les images d’archives seront publiées avec légende, date et contexte. Aucune image n’est simulée." />
+        <ChapterPhotos category="apres-incendie" />
       </section>
 
       <section>

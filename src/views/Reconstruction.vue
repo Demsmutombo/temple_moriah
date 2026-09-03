@@ -7,12 +7,11 @@ import BeforeAfterSlider from '@/components/common/BeforeAfterSlider.vue'
 import QuoteBlock from '@/components/common/QuoteBlock.vue'
 import EmptyArchive from '@/components/common/EmptyArchive.vue'
 import ScrollReveal from '@/components/common/ScrollReveal.vue'
-import SiteLogo from '@/components/common/SiteLogo.vue'
 import AccordionRow from '@/components/common/AccordionRow.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
 import ChapterVideos from '@/components/video/ChapterVideos.vue'
-import { reconstruction, biblicalReferences } from '@/data'
+import { reconstruction, biblicalReferences, beforeAfterPairs } from '@/data'
 
 const neh = biblicalReferences.find((b) => b.id === 'neh2')
 </script>
@@ -39,6 +38,19 @@ const neh = biblicalReferences.find((b) => b.id === 'neh2')
         </AccordionRow>
       </SuggestList>
       <ChapterVideos category="reconstruction" />
+      <div class="mt-4 space-y-4">
+        <div v-for="pair in beforeAfterPairs" :key="`m-${pair.id}`">
+          <h3 class="font-display text-base mb-2">{{ pair.title }}</h3>
+          <BeforeAfterSlider>
+            <template #before>
+              <img :src="pair.before" :alt="pair.title" class="ba-img" />
+            </template>
+            <template #after>
+              <img :src="pair.after" :alt="pair.title" class="ba-img" />
+            </template>
+          </BeforeAfterSlider>
+        </div>
+      </div>
       <div class="mobile-cta">
         <RouterLink to="/livre-de-memoire" class="neu-btn-primary">Laisser un témoignage</RouterLink>
       </div>
@@ -74,21 +86,19 @@ const neh = biblicalReferences.find((b) => b.id === 'neh2')
 
       <div>
         <h2 class="font-display text-3xl mb-6">Avant / après</h2>
-        <p class="text-caption mb-6">Comparaison documentaire. Les photographies réelles remplaceront ces silhouettes dès qu’elles seront versées.</p>
-        <BeforeAfterSlider>
-          <template #before>
-            <div class="h-full grid place-items-center bg-ivory text-gold p-8">
-              <SiteLogo size="xl" />
-              <p class="text-meta mt-4">Façade — mémoire</p>
-            </div>
-          </template>
-          <template #after>
-            <div class="h-full grid place-items-center bg-ivory text-ink-soft p-8">
-              <p class="font-display text-3xl">Chantier</p>
-              <p class="text-meta mt-3">Archive photographique à verser</p>
-            </div>
-          </template>
-        </BeforeAfterSlider>
+        <div class="space-y-8">
+          <div v-for="pair in beforeAfterPairs" :key="pair.id">
+            <h3 class="font-display text-xl mb-3">{{ pair.title }}</h3>
+            <BeforeAfterSlider>
+              <template #before>
+                <img :src="pair.before" :alt="`${pair.title}, avant`" class="ba-img" />
+              </template>
+              <template #after>
+                <img :src="pair.after" :alt="`${pair.title}, après`" class="ba-img" />
+              </template>
+            </BeforeAfterSlider>
+          </div>
+        </div>
       </div>
 
       <div v-if="neh">
@@ -117,3 +127,12 @@ const neh = biblicalReferences.find((b) => b.id === 'neh2')
     </section>
   </div>
 </template>
+
+<style scoped>
+.ba-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+</style>

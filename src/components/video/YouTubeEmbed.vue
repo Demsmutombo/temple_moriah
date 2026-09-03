@@ -10,9 +10,11 @@ const props = defineProps({
 
 const playing = ref(props.autoplay)
 const thumb = computed(() => youtubeThumb(props.youtubeId))
-const embed = computed(
-  () =>
-    `${youtubeEmbedUrl(props.youtubeId)}?${props.autoplay || playing.value ? 'autoplay=1&' : ''}rel=0&modestbranding=1`,
+const embed = computed(() =>
+  youtubeEmbedUrl(props.youtubeId, {
+    autoplay: props.autoplay || playing.value,
+    origin: typeof window !== 'undefined' ? window.location.origin : '',
+  }),
 )
 
 watch(
@@ -29,12 +31,12 @@ watch(
       v-if="playing"
       :src="embed"
       :title="title"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
       allowfullscreen
-      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
     />
     <button v-else type="button" class="yt-poster" :aria-label="`Lire : ${title}`" @click="playing = true">
-      <img :src="thumb" :alt="title" width="1280" height="720" loading="lazy" referrerpolicy="no-referrer" />
+      <img :src="thumb" :alt="title" width="1280" height="720" loading="lazy" />
       <span class="yt-play" aria-hidden="true">▶</span>
     </button>
   </div>

@@ -8,6 +8,7 @@ import AccordionRow from '@/components/common/AccordionRow.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
 import ChapterVideos from '@/components/video/ChapterVideos.vue'
+import ChapterPhotos from '@/components/gallery/ChapterPhotos.vue'
 import { afterFireEvents } from '@/data'
 
 const featured = afterFireEvents.find((e) => e.featured)
@@ -35,6 +36,8 @@ const featured = afterFireEvents.find((e) => e.featured)
         </AccordionRow>
       </SuggestList>
       <ChapterVideos category="apres-incendie" />
+      <ChapterPhotos category="apres-incendie" />
+      <ChapterPhotos category="culte-ciel-ouvert" />
       <div class="mobile-cta">
         <RouterLink to="/consolation" class="neu-btn-primary">Ils sont venus nous consoler</RouterLink>
       </div>
@@ -49,6 +52,7 @@ const featured = afterFireEvents.find((e) => e.featured)
         <p class="text-caption mt-3">{{ featured.sermon.speaker }} · parole · archive à verser</p>
         <div class="mt-8">
           <ChapterVideos category="apres-incendie" />
+          <ChapterPhotos category="culte-ciel-ouvert" />
         </div>
       </div>
     </section>
@@ -66,6 +70,8 @@ const featured = afterFireEvents.find((e) => e.featured)
           </ScrollReveal>
         </li>
       </ol>
+
+      <ChapterPhotos category="apres-incendie" />
 
       <EmptyArchive
         class="mt-8"

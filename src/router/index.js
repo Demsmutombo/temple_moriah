@@ -128,6 +128,15 @@ const routes = [
     },
   },
   {
+    path: '/archives/:id',
+    name: 'document',
+    component: () => import('@/views/DocumentView.vue'),
+    meta: {
+      title: 'Document',
+      description: 'Lecture d’un document d’archive du Temple Moriah.',
+    },
+  },
+  {
     path: '/galerie',
     name: 'gallery',
     component: () => import('@/views/Gallery.vue'),

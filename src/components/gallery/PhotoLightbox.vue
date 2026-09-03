@@ -57,7 +57,7 @@ onUnmounted(() => {
         </div>
         <figcaption class="mt-4 text-center">
           <p class="text-meta text-gold-pale">{{ current.displayDate || current.date }}</p>
-          <p class="mt-2 text-ivory/90">{{ current.caption || current.context }}</p>
+          <p class="mt-2 text-ivory/90">{{ current.caption || current.title }}</p>
         </figcaption>
       </figure>
       <button v-if="photos.length > 1" class="lb-nav lb-next" type="button" aria-label="Photographie suivante" @click="next">→</button>

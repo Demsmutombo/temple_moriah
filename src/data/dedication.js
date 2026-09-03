@@ -22,7 +22,7 @@ export const dedication = {
       id: 'date',
       title: 'Date',
       kind: 'fait',
-      body: 'L’année 2018 est établie. Le jour exact, l’horaire et le déroulé complet de la cérémonie restent à verser aux archives.',
+      body: 'Août 2018 est établi. Le jour exact, l’horaire et le déroulé complet de la cérémonie restent à verser aux archives.',
     },
     {
       id: 'recit',

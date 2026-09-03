@@ -16,7 +16,7 @@ const categoryName = computed(() => (shown.value ? videoCategoryLabel(shown.valu
   <div v-if="video && shown">
     <PageHero :title="shown.title" :period="categoryName" :subtitle="shown.displayDate || shown.speaker" />
     <article class="mx-auto max-w-4xl px-4 lg:px-5 py-4 lg:py-12 space-y-6 lg:space-y-8">
-      <VideoPlayer :src="video.url" :youtube-id="video.youtubeId" :title="shown.title" />
+      <VideoPlayer :src="video.url" :youtube-id="video.youtubeId" :poster="shown.thumbnail" :title="shown.title" />
       <RouterLink to="/mediatheque" class="text-meta text-gold inline-block">← Médiathèque</RouterLink>
     </article>
   </div>

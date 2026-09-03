@@ -13,9 +13,19 @@ export function youtubeIdFromUrl(url) {
   }
 }
 
-export function youtubeEmbedUrl(id) {
+export function youtubeEmbedUrl(id, { autoplay = false, origin = '' } = {}) {
   if (!id) return ''
-  return `https://www.youtube-nocookie.com/embed/${id}`
+  const params = new URLSearchParams({
+    rel: '0',
+    playsinline: '1',
+    enablejsapi: '1',
+  })
+  if (autoplay) params.set('autoplay', '1')
+  if (origin) {
+    params.set('origin', origin)
+    params.set('widget_referrer', origin)
+  }
+  return `https://www.youtube.com/embed/${id}?${params.toString()}`
 }
 
 export function youtubeThumb(id, quality = 'hqdefault') {

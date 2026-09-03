@@ -3,12 +3,12 @@ import PageHero from '@/components/layout/PageHero.vue'
 import PeriodNav from '@/components/navigation/PeriodNav.vue'
 import KindBadge from '@/components/common/KindBadge.vue'
 import QuoteBlock from '@/components/common/QuoteBlock.vue'
-import EmptyArchive from '@/components/common/EmptyArchive.vue'
 import ScrollReveal from '@/components/common/ScrollReveal.vue'
 import AccordionRow from '@/components/common/AccordionRow.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
 import ChapterVideos from '@/components/video/ChapterVideos.vue'
+import ChapterPhotos from '@/components/gallery/ChapterPhotos.vue'
 import { dedication } from '@/data'
 </script>
 
@@ -33,6 +33,7 @@ import { dedication } from '@/data'
         />
       </SuggestList>
       <ChapterVideos category="dedicace" />
+      <ChapterPhotos category="dedicace" />
       <div class="mobile-cta">
         <RouterLink to="/vie-du-temple" class="neu-btn-primary">Lire la vie du Temple</RouterLink>
       </div>
@@ -58,9 +59,7 @@ import { dedication } from '@/data'
       </ScrollReveal>
 
       <ChapterVideos category="dedicace" />
-      <div class="grid gap-4">
-        <EmptyArchive title="Photographies" text="L’album de la dédicace n’a pas encore été versé ici." />
-      </div>
+      <ChapterPhotos category="dedicace" />
     </article>
 
     <section class="hidden lg:block px-5 pb-16">

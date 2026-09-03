@@ -1,5 +1,8 @@
 import { youtubeEmbedUrl, youtubeThumb } from '@/utils/youtube'
 
+const DONATION_ASSETS = 'https://donation.shekinahgospel.org/assets'
+const CHURCH_2018 = 'https://shekinahgospel.org/images/church/2018'
+
 /** Ordre d’affichage : visites, consolation, paroles du pasteur, puis le fil historique. */
 export const videoCategories = [
   { id: 'visiteurs', label: 'Visites' },
@@ -188,10 +191,38 @@ export const videos = [
     speaker: 'Pasteur Richard Diyoka',
     order: 1,
   }),
+  {
+    id: 'vid-temple-vie',
+    title: 'Le Temple Moriah',
+    category: 'dedicace',
+    date: '2018-08',
+    displayDate: 'Août 2018',
+    url: `${DONATION_ASSETS}/temple-before.mp4`,
+    thumbnail: `${DONATION_ASSETS}/dedicace.JPG`,
+    speaker: null,
+    description: '',
+    duration: null,
+    eventId: null,
+    order: 2,
+  },
+  {
+    id: 'vid-temple-incendie',
+    title: 'L’incendie du Temple Moriah',
+    category: 'incendie',
+    date: '2026-05-17',
+    displayDate: '17 mai 2026',
+    url: `${DONATION_ASSETS}/temple-after.mp4`,
+    thumbnail: `${DONATION_ASSETS}/main-entrance-after.jpg`,
+    speaker: null,
+    description: '',
+    duration: null,
+    eventId: 'incendie-2026-05-17',
+    order: 2,
+  },
 ]
 
 export const youtubeVideos = videos
-  .filter((v) => v.youtubeId)
+  .filter((v) => v.youtubeId || v.url)
   .slice()
   .sort((a, b) => {
     const ia = videoCategories.findIndex((c) => c.id === a.category)
@@ -230,17 +261,170 @@ export const photoCategories = [
   { id: 'reconstruction', label: 'Reconstruction' },
 ]
 
-export const photos = [
-  {
-    id: 'ph-dedicace-album',
-    title: 'Album de la dédicace',
-    date: '2018',
+function photo(fields) {
+  return {
+    event: '',
+    caption: '',
+    context: '',
+    src: null,
+    ...fields,
+  }
+}
+
+const dedicaceAlbum = Array.from({ length: 34 }, (_, i) =>
+  photo({
+    id: `ph-dedicace-${i}`,
+    title: 'Dédicace Temple Moriah',
+    date: '2018-08',
+    displayDate: 'Août 2018',
     year: '2018',
     category: 'dedicace',
     event: 'Dédicace du Temple Moriah',
-    caption: 'Photographies de la dédicace — à verser aux archives.',
-    context: '',
-    src: null,
+    src: `${CHURCH_2018}/image${i}.jpg`,
+  }),
+)
+
+export const photos = [
+  ...dedicaceAlbum,
+  photo({
+    id: 'ph-dedicace-vue',
+    title: 'Dédicace du Temple Moriah',
+    date: '2018-08',
+    displayDate: 'Août 2018',
+    year: '2018',
+    category: 'dedicace',
+    event: 'Dédicace du Temple Moriah',
+    src: `${DONATION_ASSETS}/dedicace.JPG`,
+  }),
+  photo({
+    id: 'ph-facade-avant',
+    title: 'Façade principale',
+    date: '2018-08',
+    displayDate: 'Août 2018',
+    year: '2018',
+    category: 'dedicace',
+    event: 'Dédicace du Temple Moriah',
+    caption: 'Façade principale',
+    src: `${DONATION_ASSETS}/main-entrance-before.png`,
+  }),
+  photo({
+    id: 'ph-sanctuaire-avant',
+    title: 'Sanctuaire et chaire',
+    date: '2018-08',
+    displayDate: 'Août 2018',
+    year: '2018',
+    category: 'dedicace',
+    event: 'Dédicace du Temple Moriah',
+    caption: 'Sanctuaire et chaire',
+    src: `${DONATION_ASSETS}/interior-sanctuary.png`,
+  }),
+  photo({
+    id: 'ph-balcon-avant',
+    title: 'Vue du balcon',
+    date: '2018-08',
+    displayDate: 'Août 2018',
+    year: '2018',
+    category: 'dedicace',
+    event: 'Dédicace du Temple Moriah',
+    caption: 'Vue du balcon',
+    src: `${DONATION_ASSETS}/interior-from%20balcony.png`,
+  }),
+  photo({
+    id: 'ph-toiture-avant',
+    title: 'Toiture et structure',
+    date: '2018-08',
+    displayDate: 'Août 2018',
+    year: '2018',
+    category: 'dedicace',
+    event: 'Dédicace du Temple Moriah',
+    caption: 'Toiture et structure',
+    src: `${DONATION_ASSETS}/sanctuary-defore.jpeg`,
+  }),
+  photo({
+    id: 'ph-facade-apres',
+    title: 'Façade principale',
+    date: '2026-05-17',
+    displayDate: '17 mai 2026',
+    year: '2026',
+    category: 'apres-incendie',
+    event: 'Après l’incendie',
+    caption: 'Façade principale',
+    src: `${DONATION_ASSETS}/main-entrance-after.jpg`,
+  }),
+  photo({
+    id: 'ph-sanctuaire-apres',
+    title: 'Sanctuaire et chaire',
+    date: '2026-05-17',
+    displayDate: '17 mai 2026',
+    year: '2026',
+    category: 'apres-incendie',
+    event: 'Après l’incendie',
+    caption: 'Sanctuaire et chaire',
+    src: `${DONATION_ASSETS}/sanctuary-after.jpeg`,
+  }),
+  photo({
+    id: 'ph-balcon-apres',
+    title: 'Vue du balcon',
+    date: '2026-05-17',
+    displayDate: '17 mai 2026',
+    year: '2026',
+    category: 'apres-incendie',
+    event: 'Après l’incendie',
+    caption: 'Vue du balcon',
+    src: `${DONATION_ASSETS}/balcony-after.jpeg`,
+  }),
+  photo({
+    id: 'ph-toiture-apres',
+    title: 'Toiture et structure',
+    date: '2026-05-17',
+    displayDate: '17 mai 2026',
+    year: '2026',
+    category: 'apres-incendie',
+    event: 'Après l’incendie',
+    caption: 'Toiture et structure',
+    src: `${DONATION_ASSETS}/roof-after.jpeg`,
+  }),
+  photo({
+    id: 'ph-culte-ciel-ouvert',
+    title: 'Culte à ciel ouvert',
+    date: '2026-05-24',
+    displayDate: '24 mai 2026',
+    year: '2026',
+    category: 'culte-ciel-ouvert',
+    event: 'Culte à ciel ouvert',
+    caption: 'Culte à ciel ouvert',
+    src: `${DONATION_ASSETS}/currently-open-sky-service.jpeg`,
+  }),
+]
+
+export function photosInCategory(categoryId) {
+  return photos.filter((p) => p.category === categoryId && p.src)
+}
+
+export const beforeAfterPairs = [
+  {
+    id: 'facade',
+    title: 'Façade principale',
+    before: `${DONATION_ASSETS}/main-entrance-before.png`,
+    after: `${DONATION_ASSETS}/main-entrance-after.jpg`,
+  },
+  {
+    id: 'sanctuaire',
+    title: 'Sanctuaire et chaire',
+    before: `${DONATION_ASSETS}/interior-sanctuary.png`,
+    after: `${DONATION_ASSETS}/sanctuary-after.jpeg`,
+  },
+  {
+    id: 'balcon',
+    title: 'Vue du balcon',
+    before: `${DONATION_ASSETS}/interior-from%20balcony.png`,
+    after: `${DONATION_ASSETS}/balcony-after.jpeg`,
+  },
+  {
+    id: 'toiture',
+    title: 'Toiture et structure',
+    before: `${DONATION_ASSETS}/sanctuary-defore.jpeg`,
+    after: `${DONATION_ASSETS}/roof-after.jpeg`,
   },
 ]
 
@@ -269,7 +453,7 @@ export const documents = [
     author: 'Pasteur Richard Diyoka',
     category: 'reconstruction',
     viewerType: 'pdf',
-    url: 'https://donation.shekinahgospel.org/assets/pastor-message.pdf',
+    url: `${DONATION_ASSETS}/pastor-message.pdf`,
     summary: 'Lecture du message pastoral.',
     description: 'Lecture du message pastoral.',
   },
