@@ -183,9 +183,19 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior(to, from, saved) {
-    if (saved) return saved
-    if (to.hash) return { el: to.hash, behavior: 'smooth' }
+  scrollBehavior(to) {
+    if (typeof document !== 'undefined') {
+      const main = document.getElementById('contenu')
+      const mobile = window.matchMedia('(max-width: 1023px)').matches
+      if (main && mobile) {
+        requestAnimationFrame(() => {
+          if (to.hash) document.querySelector(to.hash)?.scrollIntoView({ block: 'start' })
+          else main.scrollTop = 0
+        })
+        return
+      }
+    }
+    if (to.hash) return { el: to.hash }
     return { top: 0 }
   },
 })

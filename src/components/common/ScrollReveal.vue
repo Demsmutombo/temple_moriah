@@ -47,8 +47,8 @@ onBeforeUnmount(() => observer?.disconnect())
 <style scoped>
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.9s ease, transform 0.9s ease;
+  transform: translateY(10px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 .reveal.is-visible {
   opacity: 1;

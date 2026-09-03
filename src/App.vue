@@ -10,7 +10,7 @@ import InstallAppBanner from '@/components/layout/InstallAppBanner.vue'
   <InstallAppBanner />
   <DefaultLayout>
     <RouterView v-slot="{ Component }">
-      <Transition name="page" mode="out-in">
+      <Transition name="page">
         <component :is="Component" />
       </Transition>
     </RouterView>

@@ -30,8 +30,14 @@ defineProps({
     filter 0.4s ease;
 }
 .site-logo:hover {
-  transform: scale(1.12) translateY(-2px);
-  filter: drop-shadow(0 10px 20px rgba(74, 144, 226, 0.38));
+  transform: none;
+  filter: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .site-logo:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 10px 20px rgba(74, 144, 226, 0.38));
+  }
 }
 .site-logo--sm {
   width: 56px;

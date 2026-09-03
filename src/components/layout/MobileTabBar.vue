@@ -128,6 +128,7 @@ const plusActive = computed(() => {
   background: none;
   border: 0;
   padding: 0;
+  touch-action: manipulation;
 }
 .tab-icon {
   position: relative;

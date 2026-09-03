@@ -48,8 +48,7 @@ function goBack() {
   right: 0;
   z-index: 60;
   padding-top: env(safe-area-inset-top, 0px);
-  background: color-mix(in srgb, var(--neu-bg) 92%, transparent);
-  backdrop-filter: blur(18px);
+  background: color-mix(in srgb, var(--neu-bg) 94%, transparent);
 }
 .topbar.is-home {
   background: transparent;

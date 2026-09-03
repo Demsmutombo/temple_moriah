@@ -12,7 +12,7 @@ const { isHome } = useMobileNav()
 </script>
 
 <template>
-  <div class="app-shell min-h-dvh flex flex-col bg-ivory text-ink">
+  <div class="app-shell bg-ivory text-ink">
     <a href="#contenu" class="skip-link">Aller au contenu</a>
     <MobileTopBar />
     <AppHeader class="hidden lg:block" />
@@ -40,6 +40,9 @@ const { isHome } = useMobileNav()
 .skip-link:focus {
   top: 1rem;
 }
+.app-shell {
+  min-height: 100dvh;
+}
 .app-main {
   padding-top: calc(3.35rem + env(safe-area-inset-top, 0px));
   padding-bottom: calc(5.6rem + env(safe-area-inset-bottom, 0px));
@@ -47,6 +50,24 @@ const { isHome } = useMobileNav()
 }
 .app-main.is-home {
   padding-top: 0;
+}
+@media (max-width: 1023px) {
+  .app-shell {
+    height: 100dvh;
+    max-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .app-main {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+  }
 }
 @media (min-width: 1024px) {
   .app-main,

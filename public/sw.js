@@ -1,16 +1,12 @@
-const CACHE = 'temple-moriah-v1'
+const CACHE = 'temple-moriah-v2'
 
 const PRECACHE = [
   '/',
   '/index.html',
   '/manifest.webmanifest',
-  '/logo.png',
   '/icons/pwa-192.png',
   '/icons/pwa-512.png',
-  '/icons/pwa-512-maskable.png',
   '/icons/apple-touch-icon.png',
-  '/icons/favicon-32.png',
-  '/splash/apple-splash-1170x2532.png',
 ]
 
 self.addEventListener('install', (event) => {
@@ -36,6 +32,9 @@ self.addEventListener('fetch', (event) => {
   const { request } = event
   if (request.method !== 'GET') return
 
+  const url = new URL(request.url)
+  if (url.origin !== self.location.origin) return
+
   if (request.mode === 'navigate') {
     event.respondWith(
       fetch(request)
@@ -49,14 +48,11 @@ self.addEventListener('fetch', (event) => {
     return
   }
 
-  const url = new URL(request.url)
-  if (url.origin !== self.location.origin) return
-
   event.respondWith(
     caches.match(request).then((cached) => {
       const fetched = fetch(request)
         .then((response) => {
-          if (response && response.status === 200) {
+          if (response && response.status === 200 && response.type === 'basic') {
             const copy = response.clone()
             caches.open(CACHE).then((cache) => cache.put(request, copy))
           }

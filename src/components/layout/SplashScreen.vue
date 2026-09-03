@@ -2,7 +2,19 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import { site } from '@/data'
 
-const visible = ref(true)
+function isStandalone() {
+  try {
+    return (
+      window.matchMedia('(display-mode: standalone)').matches ||
+      window.matchMedia('(display-mode: fullscreen)').matches ||
+      window.navigator.standalone === true
+    )
+  } catch {
+    return false
+  }
+}
+
+const visible = ref(!isStandalone())
 const leaving = ref(false)
 let holdTimer
 let hideTimer
@@ -13,20 +25,20 @@ function close() {
   window.clearTimeout(holdTimer)
   hideTimer = window.setTimeout(() => {
     visible.value = false
-    document.body.style.overflow = ''
-  }, 1500)
+    document.body.style.removeProperty('overflow')
+  }, 420)
 }
 
 onMounted(() => {
-  document.body.style.overflow = 'hidden'
+  if (!visible.value) return
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  holdTimer = window.setTimeout(close, reduced ? 1800 : 5600)
+  holdTimer = window.setTimeout(close, reduced ? 700 : 1400)
 })
 
 onUnmounted(() => {
   window.clearTimeout(holdTimer)
   window.clearTimeout(hideTimer)
-  document.body.style.overflow = ''
+  document.body.style.removeProperty('overflow')
 })
 </script>
 
@@ -57,9 +69,10 @@ onUnmounted(() => {
   place-items: center;
   background: #ffffff;
   cursor: pointer;
+  touch-action: manipulation;
 }
 .splash.is-leaving {
-  animation: splash-fade 1.4s ease forwards;
+  animation: splash-fade 0.42s ease forwards;
   pointer-events: none;
 }
 .splash-icon {
@@ -69,10 +82,10 @@ onUnmounted(() => {
   overflow: hidden;
   background: #eaf2fb;
   transform-origin: center center;
-  animation: splash-zoom-in 2.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: splash-zoom-in 1.15s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .splash.is-leaving .splash-icon {
-  animation: splash-zoom-out 1.4s ease forwards;
+  animation: splash-zoom-out 0.42s ease forwards;
 }
 .splash-icon img {
   width: 100%;
@@ -81,29 +94,18 @@ onUnmounted(() => {
   display: block;
 }
 @keyframes splash-zoom-in {
-  0% {
-    transform: scale(0.52);
+  from {
+    transform: scale(0.88);
     opacity: 0;
   }
-  22% {
-    opacity: 1;
-  }
-  78% {
-    transform: scale(1.08);
-    opacity: 1;
-  }
-  100% {
+  to {
     transform: scale(1);
     opacity: 1;
   }
 }
 @keyframes splash-zoom-out {
-  from {
-    transform: scale(1);
-    opacity: 1;
-  }
   to {
-    transform: scale(0.72);
+    transform: scale(0.94);
     opacity: 0;
   }
 }

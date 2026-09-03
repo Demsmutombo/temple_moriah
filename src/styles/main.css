@@ -34,7 +34,6 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
     color: var(--color-ink);
     background: var(--neu-bg);
   }
@@ -45,11 +44,7 @@
     line-height: 1.65;
     background: var(--neu-bg);
     text-rendering: optimizeLegibility;
-  }
-
-  html.is-standalone,
-  html.is-standalone body {
-    overscroll-behavior: none;
+    touch-action: manipulation;
   }
 
   :focus-visible {
@@ -244,13 +239,12 @@
 
   .page-enter-active,
   .page-leave-active {
-    transition: opacity 0.35s ease, transform 0.35s ease;
+    transition: opacity 0.16s ease;
   }
 
   .page-enter-from,
   .page-leave-to {
     opacity: 0;
-    transform: translateY(8px);
   }
 }
 
@@ -276,8 +270,15 @@
 
 @media (max-width: 1023px) {
   html,
+  body,
+  #app {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  html,
   body {
-    overflow-x: hidden;
+    overscroll-behavior: none;
   }
 
   .neu-card {

@@ -16,12 +16,14 @@ watch(
 )
 
 watch(moreOpen, (open) => {
-  document.body.style.overflow = open ? 'hidden' : ''
+  const main = document.getElementById('contenu')
+  if (main) main.style.overflowY = open ? 'hidden' : ''
   if (!open) copied.value = false
 })
 
 onUnmounted(() => {
-  document.body.style.overflow = ''
+  const main = document.getElementById('contenu')
+  if (main) main.style.overflowY = ''
 })
 
 async function onCopy() {
