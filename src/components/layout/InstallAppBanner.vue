@@ -10,7 +10,7 @@ async function onInstall() {
 
 <template>
   <div v-if="showBanner" class="install-banner lg:hidden">
-    <img src="/icons/apple-touch-icon.png" width="44" height="44" alt="" class="install-icon" />
+    <img src="/screempage.jfif" width="44" height="44" alt="" class="install-icon" />
     <div class="min-w-0 flex-1">
       <p class="install-title">Temple Moriah</p>
       <p v-if="canInstall" class="install-text">Installer l’application sur l’écran d’accueil</p>

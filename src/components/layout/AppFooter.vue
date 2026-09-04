@@ -27,6 +27,16 @@ import SiteLogo from '@/components/common/SiteLogo.vue'
           <p>{{ site.church }}</p>
           <p class="text-ink-soft mt-2">{{ site.address }}</p>
           <p class="text-ink-soft">{{ site.country }}</p>
+          <p class="text-ink-soft mt-2">{{ site.phone }}</p>
+          <p class="mt-3">
+            <a :href="site.officialSite" class="hover:text-gold" target="_blank" rel="noopener noreferrer">shekinahgospel.org</a>
+          </p>
+          <p>
+            <a :href="site.donationUrl" class="hover:text-gold" target="_blank" rel="noopener noreferrer">Campagne de reconstruction</a>
+          </p>
+          <p class="mt-4">
+            <RouterLink to="/a-propos" class="hover:text-gold">À propos</RouterLink>
+          </p>
           <p class="mt-4 text-caption">
             Plateforme mémorielle. Les faits non confirmés ne sont pas inventés.
           </p>

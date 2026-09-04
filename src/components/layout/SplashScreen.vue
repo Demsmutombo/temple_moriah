@@ -2,19 +2,7 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import { site } from '@/data'
 
-function isStandalone() {
-  try {
-    return (
-      window.matchMedia('(display-mode: standalone)').matches ||
-      window.matchMedia('(display-mode: fullscreen)').matches ||
-      window.navigator.standalone === true
-    )
-  } catch {
-    return false
-  }
-}
-
-const visible = ref(!isStandalone())
+const visible = ref(true)
 const leaving = ref(false)
 let holdTimer
 let hideTimer
@@ -26,13 +14,13 @@ function close() {
   hideTimer = window.setTimeout(() => {
     visible.value = false
     document.body.style.removeProperty('overflow')
-  }, 420)
+  }, 480)
 }
 
 onMounted(() => {
-  if (!visible.value) return
+  document.body.style.overflow = 'hidden'
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  holdTimer = window.setTimeout(close, reduced ? 700 : 1400)
+  holdTimer = window.setTimeout(close, reduced ? 700 : 1600)
 })
 
 onUnmounted(() => {
@@ -53,8 +41,10 @@ onUnmounted(() => {
       :aria-label="`Ouverture — ${site.name}`"
       @click="close"
     >
-      <div class="splash-icon">
-        <img src="/screempage.jfif" :alt="site.name" />
+      <div class="splash-motion">
+        <div class="splash-icon">
+          <img src="/screempage.jfif" :alt="site.name" />
+        </div>
       </div>
     </div>
   </Teleport>
@@ -72,30 +62,37 @@ onUnmounted(() => {
   touch-action: manipulation;
 }
 .splash.is-leaving {
-  animation: splash-fade 0.42s ease forwards;
+  animation: splash-fade 0.48s ease forwards;
   pointer-events: none;
 }
+.splash-motion {
+  transform-origin: center center;
+  animation: splash-zoom-in 1.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.splash.is-leaving .splash-motion {
+  animation: splash-zoom-out 0.42s ease forwards;
+}
 .splash-icon {
-  width: min(42vw, 196px);
+  width: min(52vw, 220px);
   aspect-ratio: 1;
   border-radius: 22%;
   overflow: hidden;
+  overflow: clip;
   background: var(--neu-light);
-  transform-origin: center center;
-  animation: splash-zoom-in 1.15s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-.splash.is-leaving .splash-icon {
-  animation: splash-zoom-out 0.42s ease forwards;
+  box-shadow: var(--neu-raised);
 }
 .splash-icon img {
   width: 100%;
   height: 100%;
+  max-width: none;
   object-fit: cover;
+  object-position: center;
   display: block;
+  border-radius: inherit;
 }
 @keyframes splash-zoom-in {
   from {
-    transform: scale(0.88);
+    transform: scale(0.92);
     opacity: 0;
   }
   to {
@@ -105,7 +102,7 @@ onUnmounted(() => {
 }
 @keyframes splash-zoom-out {
   to {
-    transform: scale(0.94);
+    transform: scale(0.97);
     opacity: 0;
   }
 }
@@ -115,8 +112,8 @@ onUnmounted(() => {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .splash-icon,
-  .splash.is-leaving .splash-icon {
+  .splash-motion,
+  .splash.is-leaving .splash-motion {
     animation: none;
     transform: none;
     opacity: 1;

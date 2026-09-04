@@ -4,13 +4,20 @@ export const dedication = {
   title: 'La dédicace du Temple Moriah',
   kind: 'fait',
   status: 'verified',
-  summary: 'En 2018, le Temple Moriah est dédié. Cet acte ouvre la vie liturgique de l’édifice comme maison de rassemblement de Shekinah Tabernacle.',
+  summary:
+    'En août 2018, le Temple Moriah est offert à l’Éternel. Cet acte ouvre la vie liturgique de l’édifice comme maison de rassemblement de Shekinah Tabernacle.',
   biblicalReference: {
     reference: 'Psaume 122:1',
     text: 'Je suis joyeux quand on me dit : Allons à la maison de l’Éternel !',
     kind: 'citation_biblique',
-    source: 'Site officiel de Shekinah Tabernacle, associé à la dédicace du Temple Moriah.',
+    source: 'Associé à la dédicace du Temple Moriah.',
   },
+  features: [
+    { id: 'sanctuaire', label: 'Sanctuaire spacieux', photoId: 'ph-sanctuaire-avant' },
+    { id: 'balcon', label: 'Balcon supérieur', photoId: 'ph-balcon-avant' },
+    { id: 'chaire', label: 'Chaire pastorale', photoId: 'ph-sanctuaire-avant' },
+    { id: 'facade', label: 'Façade principale', photoId: 'ph-facade-avant' },
+  ],
   sections: [
     {
       id: 'contexte',
@@ -22,28 +29,26 @@ export const dedication = {
       id: 'date',
       title: 'Date',
       kind: 'fait',
-      body: 'Août 2018 est établi. Le jour exact, l’horaire et le déroulé complet de la cérémonie restent à verser aux archives.',
+      body: 'Août 2018. Le jour exact, l’horaire et le déroulé complet de la cérémonie restent à verser aux archives.',
     },
     {
       id: 'recit',
-      title: 'Récit',
+      title: 'L’édifice consacré',
       kind: 'fait',
-      status: 'to_complete',
-      body: 'Information à compléter : le récit officiel de la dédicace, les prédications, les discours et la liste des personnes présentes n’ont pas encore été transmis à cette plateforme.',
+      body: 'L’inauguration célèbre un sanctuaire spacieux, un balcon moderne, une chaire pastorale, un équipement de sonorisation et un salon destiné à l’accueil des délégations. Un album photographique de la dédicace est conservé.',
     },
   ],
-  photographs: [],
-  videos: [],
+  photographs: ['ph-dedicace-vue', 'ph-facade-avant', 'ph-sanctuaire-avant', 'ph-balcon-avant'],
+  videos: ['vid-temple-vie'],
   sermons: [],
   speeches: [],
-  people: [],
+  people: ['Révérend Pasteur Richard Diyoka Nsanguluja'],
   documents: [
     {
       id: 'album-2018',
       title: 'Album photographique — Dédicace Temple Moriah',
       year: '2018',
-      status: 'pending_archive',
-      source: 'Galerie officielle de Shekinah Tabernacle',
+      status: 'verified',
     },
   ],
 }

@@ -27,8 +27,22 @@ export const site = {
     title: 'Pasteur de Shekinah Tabernacle',
   },
   email: 'shekinahrdc@gmail.com',
+  phone: '+243 810 500 500',
   officialSite: 'https://shekinahgospel.org/',
+  donationUrl: 'https://donation.shekinahgospel.org/',
+  donationEmail: 'donation@shekinahgospel.org',
   tagline: 'Un bâtiment peut être détruit. Une mémoire ne doit pas disparaître.',
+  motto: 'De la cendre à la splendeur de l’Éternel',
+  developer: {
+    name: 'Israel Mutombo IM',
+    initials: 'IM',
+    phone: '0893002461',
+    phoneDisplay: '089 300 24 61',
+    tel: 'tel:+243893002461',
+    whatsapp: 'https://wa.me/243893002461',
+    email: 'israelmutombo9319@gmail.com',
+    mailto: 'mailto:israelmutombo9319@gmail.com',
+  },
 }
 
 export const periods = [
@@ -62,7 +76,7 @@ export const periods = [
     title: 'De la cendre à la reconstruction',
     years: '17 mai 2026 — aujourd’hui',
     path: '/epreuve',
-    summary: 'L’incendie, le culte à ciel ouvert, la solidarité et le nouveau chapitre.',
+    summary: 'Le sinistre du 17 mai 2026, le culte à ciel ouvert, la solidarité et l’élan pour rebâtir.',
   },
 ]
 
@@ -107,6 +121,7 @@ export const navItems = [
   },
   { label: 'Reconstruction', path: '/reconstruction' },
   { label: 'Livre de mémoire', path: '/livre-de-memoire' },
+  { label: 'À propos', path: '/a-propos' },
 ]
 
 export const biblicalReferences = [
@@ -134,8 +149,22 @@ export const biblicalReferences = [
   {
     id: 'neh2',
     reference: 'Néhémie 2:17-18',
-    text: 'Venez, reconstruisons les murs de Jérusalem, et nous ne serons plus dans l’humiliation.',
-    context: 'Cité sur le site officiel dans l’appel à rebâtir le Temple Moriah.',
+    text: 'Levons-nous, et bâtissons ! Et ils se fortifièrent dans cette bonne résolution.',
+    context: 'Appel à rebâtir, associé à la reconstruction du Temple Moriah.',
+    kind: 'citation_biblique',
+  },
+  {
+    id: 'hag1',
+    reference: 'Aggée 1:7-8',
+    text: 'Ainsi parle l’Éternel des armées : Considérez attentivement vos voies ! Montez sur la montagne, apportez du bois, et bâtissez la maison.',
+    context: 'Appel à rebâtir, associé à la reconstruction du Temple Moriah.',
+    kind: 'citation_biblique',
+  },
+  {
+    id: 'ch29',
+    reference: '1 Chroniques 29:13-14',
+    text: 'Maintenant, ô notre Dieu, nous Te louons, et nous célébrons Ton Nom Glorieux. Car qui suis-je et qui est mon peuple, pour que nous puissions Te faire volontairement ces offrandes ?',
+    context: 'Parole du roi David, associée à l’appel aux offrandes volontaires pour rebâtir.',
     kind: 'citation_biblique',
   },
 ]

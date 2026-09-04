@@ -31,6 +31,7 @@ export function displayVideo(video) {
 }
 
 export async function prefetchYoutubeMeta(list) {
+  if (typeof navigator !== 'undefined' && !navigator.onLine) return
   const pending = list.filter((v) => v.youtubeId && !ytMeta[v.youtubeId])
   await Promise.all(
     pending.map(async (video) => {

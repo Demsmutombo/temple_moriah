@@ -16,8 +16,8 @@ const introLines = [
   { title: 'Une construction.', text: '2011 — 2018. Des années pour élever une maison.', path: '/construction' },
   { title: 'Une maison de rassemblement.', text: 'Le Temple devient lieu de culte, de parole et de rencontre.', path: '/vie-du-temple' },
   { title: 'Une mémoire.', text: 'Les personnes, les visites, les archives, les souvenirs.', path: '/archives' },
-  { title: 'Une épreuve.', text: 'Le 17 mai 2026, le bâtiment est ravagé par le feu.', path: '/epreuve' },
-  { title: 'Une reconstruction.', text: 'La mémoire continue. Un nouveau chapitre s’ouvre.', path: '/reconstruction' },
+  { title: 'Une épreuve.', text: 'Le 17 mai 2026, un incendie ravage le Temple Moriah.', path: '/epreuve' },
+  { title: 'Une reconstruction.', text: 'De la cendre à la splendeur de l’Éternel.', path: '/reconstruction' },
 ]
 
 const mediaVideos = youtubeVideos
@@ -52,11 +52,11 @@ const mediaVideos = youtubeVideos
       </div>
     </section>
 
-    <div class="hidden lg:block">
+    <div class="home-desk hidden lg:block">
       <section class="mx-auto max-w-4xl px-4 py-16 md:py-24">
         <ScrollReveal>
           <div class="neu-card-lg text-center">
-            <p class="text-meta mb-5">Le fil de l’histoire</p>
+            <p class="text-meta mb-5">{{ site.motto }}</p>
             <blockquote class="font-display italic text-xl md:text-4xl leading-tight text-ink">
               « {{ site.tagline }} »
             </blockquote>
@@ -92,7 +92,7 @@ const mediaVideos = youtubeVideos
         <SectionHeading
           eyebrow="Médiathèque"
           title="Les médias de l’archive"
-          subtitle="Visites, consolation, paroles du pasteur, puis le fil de l’histoire."
+          subtitle="Les médias suivent le fil de l’histoire, de la construction à la reconstruction."
         />
         <VideoSections :videos="mediaVideos" />
         <div class="mt-8 text-center">
@@ -128,8 +128,15 @@ const mediaVideos = youtubeVideos
           <QuoteBlock
             text="Je suis joyeux quand on me dit : Allons à la maison de l’Éternel !"
             attribution="Psaume 122:1"
-            note="Citation biblique associée, sur le site officiel, à la dédicace du Temple Moriah en 2018."
+            note="Associé à la dédicace du Temple Moriah en 2018."
           />
+          <div class="mt-6">
+            <QuoteBlock
+              text="Levons-nous, et bâtissons ! Et ils se fortifièrent dans cette bonne résolution."
+              attribution="Néhémie 2:18"
+              note="Associé à l’appel à rebâtir."
+            />
+          </div>
         </ScrollReveal>
       </section>
 
@@ -219,6 +226,11 @@ const mediaVideos = youtubeVideos
   box-shadow: var(--neu-inset);
 }
 @media (min-width: 1024px) {
+  .home-desk {
+    position: relative;
+    z-index: 2;
+    background: var(--neu-bg);
+  }
   .intro-card {
     display: block;
   }

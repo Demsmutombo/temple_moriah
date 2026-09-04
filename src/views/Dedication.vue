@@ -18,7 +18,7 @@ import { dedication } from '@/data'
       tone="solemn"
       period="III — 2018"
       title="La dédicace"
-      subtitle="Le Temple Moriah est consacré. Une année établie. Un acte solennel. Un récit encore à documenter dans le détail."
+      subtitle="Août 2018. Le Temple Moriah est offert à l’Éternel. Sanctuaire, balcon, chaire et parvis deviennent maison de rassemblement."
     />
     <PeriodNav />
 

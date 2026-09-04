@@ -1,6 +1,6 @@
 export const reconstruction = {
   title: 'Reconstruction',
-  subtitle: 'Un nouveau chapitre',
+  subtitle: 'De la cendre à la splendeur de l’Éternel',
   situation: {
     kind: 'fait',
     paragraphs: [
@@ -15,6 +15,16 @@ export const reconstruction = {
       'La reconstruction n’efface pas le Temple disparu. Elle prolonge une histoire : celle d’une assemblée qui a déjà bâti une fois, et qui transmet désormais sa mémoire tout en relevant un nouveau lieu.',
       'Cette plateforme n’avance aucun chiffre financier ni aucun calendrier qui n’aurait pas été officiellement communiqué.',
     ],
+  },
+  appeal: {
+    kind: 'parole',
+    title: 'Appel à rebâtir',
+    status: 'Campagne active',
+    lead: 'Des membres et des amis ont exprimé le désir de contribuer aux travaux de reconstruction. Les offrandes volontaires sont reçues sur la plateforme de collecte de l’Église.',
+    url: 'https://donation.shekinahgospel.org/',
+    thanks:
+      'Le Révérend Pasteur Richard Diyoka Nsanguluja et Shekinah Tabernacle remercient pour les prières et la générosité manifestées durant cette épreuve.',
+    blessing: 'Que Dieu vous bénisse abondamment',
   },
   events: [
     {
@@ -36,7 +46,8 @@ export const reconstruction = {
       date: '2026-07-24',
       title: 'Pose de la première pierre du nouveau temple',
       kind: 'fait',
-      description: 'Le vendredi 24 juillet 2026, à Kinshasa, le pasteur Richard Diyoka procède à la pose de la première pierre, marquant officiellement le début de la reconstruction.',
+      description:
+        'Le vendredi 24 juillet 2026, à Kinshasa, le pasteur Richard Diyoka procède à la pose de la première pierre, marquant officiellement le début de la reconstruction.',
     },
   ],
   futureSteps: [

@@ -4,7 +4,9 @@
  * Distinguer citation originale et résumé éditorial.
  */
 
-export const pastorMessages = [
+import { sortChrono } from '@/utils/chrono'
+
+export const pastorMessages = sortChrono([
   {
     id: 'pm-enquete-17-mai',
     author: 'Pasteur Richard Diyoka',
@@ -91,4 +93,40 @@ export const pastorMessages = [
     audio: null,
     source: 'Relais de presse, juillet 2026.',
   },
-]
+  {
+    id: 'pm-remerciement-compassion',
+    author: 'Révérend Pasteur Richard Diyoka Nsanguluja',
+    date: '2026-05',
+    displayDate: 'Mai 2026',
+    event: 'Après l’incendie',
+    eventId: 'incendie-2026-05-17',
+    context: 'Remerciement adressé à ceux qui ont manifesté leur compassion.',
+    quoteOriginal: 'Que Dieu vous bénisse abondamment',
+    quoteKind: 'citation originale',
+    editorialSummary:
+      'Le pasteur et Shekinah Tabernacle remercient pour les prières et la générosité manifestées durant l’épreuve.',
+    body: null,
+    photo: null,
+    video: null,
+    audio: null,
+    source: null,
+  },
+  {
+    id: 'pm-ferveur-24-mai',
+    author: 'Pasteur Richard Diyoka',
+    date: '2026-05-24',
+    displayDate: '24 mai 2026',
+    event: 'Culte à ciel ouvert',
+    eventId: 'culte-ciel-ouvert-2026-05-24',
+    context: 'Parole associée au rassemblement du 24 mai 2026.',
+    quoteOriginal:
+      'La structure matérielle est à terre, mais notre ferveur est debout. Nous nous relevons dès aujourd’hui.',
+    quoteKind: 'citation originale',
+    editorialSummary: 'Parole de relèvement, sept jours après le sinistre.',
+    body: null,
+    photo: 'ph-culte-ciel-ouvert',
+    video: null,
+    audio: null,
+    source: null,
+  },
+])

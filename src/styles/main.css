@@ -219,6 +219,8 @@ html.theme-dark {
 
   .mobile-cta {
     display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
     width: 100%;
     margin-top: 1rem;
   }

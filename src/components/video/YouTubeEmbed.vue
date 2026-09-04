@@ -9,6 +9,7 @@ const props = defineProps({
 })
 
 const playing = ref(props.autoplay)
+const thumbBroken = ref(false)
 const thumb = computed(() => youtubeThumb(props.youtubeId))
 const embed = computed(() =>
   youtubeEmbedUrl(props.youtubeId, {
@@ -36,7 +37,15 @@ watch(
       referrerpolicy="strict-origin-when-cross-origin"
     />
     <button v-else type="button" class="yt-poster" :aria-label="`Lire : ${title}`" @click="playing = true">
-      <img :src="thumb" :alt="title" width="1280" height="720" loading="lazy" />
+      <img
+        v-if="!thumbBroken"
+        :src="thumb"
+        :alt="title"
+        width="1280"
+        height="720"
+        loading="lazy"
+        @error="thumbBroken = true"
+      />
       <span class="yt-play" aria-hidden="true">▶</span>
     </button>
   </div>

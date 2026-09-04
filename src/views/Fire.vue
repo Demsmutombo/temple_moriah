@@ -2,7 +2,6 @@
 import PageHero from '@/components/layout/PageHero.vue'
 import PeriodNav from '@/components/navigation/PeriodNav.vue'
 import KindBadge from '@/components/common/KindBadge.vue'
-import EmptyArchive from '@/components/common/EmptyArchive.vue'
 import ScrollReveal from '@/components/common/ScrollReveal.vue'
 import QuoteBlock from '@/components/common/QuoteBlock.vue'
 import AccordionRow from '@/components/common/AccordionRow.vue'
@@ -10,7 +9,11 @@ import SuggestList from '@/components/layout/SuggestList.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
 import ChapterVideos from '@/components/video/ChapterVideos.vue'
 import ChapterPhotos from '@/components/gallery/ChapterPhotos.vue'
-import { fireRecord, pastorMessages, biblicalReferences } from '@/data'
+import { fireRecord, pastorMessages, biblicalReferences, photos } from '@/data'
+
+function firePhoto(id) {
+  return photos.find((p) => p.id === id && p.src) || null
+}
 
 const firstQuote = pastorMessages.find((m) => m.id === 'pm-enquete-17-mai')
 const lam = biblicalReferences.find((b) => b.id === 'lam2')
@@ -39,8 +42,8 @@ const fireItems = [
     <PageHero
       tone="solemn"
       period="IV — 17 mai 2026"
-      title="Le jour de l’épreuve"
-      subtitle="Un récit documentaire. Pas de dramatisation. Uniquement ce qui est établi, et ce qui reste ouvert."
+      title="Sinistre majeur"
+      subtitle="17 mai 2026. Un incendie ravage le Temple Moriah. Un récit documentaire : ce qui est établi, et les images du jour."
     />
     <PeriodNav />
 
@@ -69,7 +72,8 @@ const fireItems = [
       <section>
         <ScrollReveal>
           <p class="text-meta text-gold mb-3">{{ fireRecord.displayDate }}</p>
-          <p class="text-caption mb-8">{{ fireRecord.location }}</p>
+          <p class="text-caption mb-4">{{ fireRecord.location }}</p>
+          <p class="mb-8 text-lg leading-relaxed">{{ fireRecord.officialLead }}</p>
           <div class="flex items-center gap-3 mb-6">
             <h2 class="font-display text-3xl md:text-4xl">{{ fireRecord.sections.jour.title }}</h2>
             <KindBadge kind="fait" />
@@ -100,6 +104,22 @@ const fireItems = [
         />
       </section>
 
+      <section v-if="fireRecord.damages.length">
+        <h2 class="font-display text-3xl mb-6">Ampleur des dégâts</h2>
+        <ul class="space-y-6">
+          <li v-for="d in fireRecord.damages" :key="d.id" class="neu-card">
+            <h3 class="font-display text-2xl">{{ d.title }}</h3>
+            <p class="mt-2 text-ink-soft">{{ d.text }}</p>
+            <img
+              v-if="firePhoto(d.photoId)"
+              :src="firePhoto(d.photoId).src"
+              :alt="d.title"
+              class="mt-4 w-full rounded-2xl object-cover aspect-[16/10]"
+            />
+          </li>
+        </ul>
+      </section>
+
       <section>
         <ChapterPhotos category="apres-incendie" />
       </section>
@@ -111,7 +131,10 @@ const fireItems = [
 
       <section>
         <h2 class="font-display text-3xl mb-6">Témoignages</h2>
-        <EmptyArchive title="Récits personnels" text="Les témoignages du jour de l’événement seront distingués des faits historiques et des paroles officielles." />
+        <p class="text-ink-soft leading-relaxed">
+          Les paroles d’encouragement sont rassemblées à part, distinctes des faits du 17 mai.
+        </p>
+        <RouterLink to="/voix/temoignages" class="neu-btn mt-5">Lire les témoignages</RouterLink>
       </section>
 
       <section>

@@ -1,5 +1,7 @@
 <script setup>
+import { onMounted, onUnmounted, ref } from 'vue'
 import SiteLogo from '@/components/common/SiteLogo.vue'
+import { useReducedMotion } from '@/composables/useReducedMotion'
 import { site } from '@/data'
 
 const stats = [
@@ -7,6 +9,34 @@ const stats = [
   { value: '2018', label: 'Dédicace' },
   { value: '2026', label: 'Mémoire' },
 ]
+
+const slides = Object.entries(
+  import.meta.glob('@/assets/images/hero/*.{jpg,jpeg,png,webp,JPG,JPEG}', {
+    eager: true,
+    import: 'default',
+  }),
+)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, src]) => src)
+
+const index = ref(0)
+const reduced = useReducedMotion()
+const HOLD_MS = 5200
+let timer = 0
+
+function nextSlide() {
+  if (slides.length < 2) return
+  index.value = (index.value + 1) % slides.length
+}
+
+onMounted(() => {
+  if (reduced.value || slides.length < 2) return
+  timer = window.setInterval(nextSlide, HOLD_MS)
+})
+
+onUnmounted(() => {
+  if (timer) window.clearInterval(timer)
+})
 </script>
 
 <template>
@@ -64,20 +94,37 @@ const stats = [
       </div>
     </div>
 
-    <div class="hero-card hidden lg:block">
-      <RouterLink to="/" class="hero-logo" aria-label="Temple Moriah — accueil">
-        <SiteLogo size="xl" class="mx-auto" />
-      </RouterLink>
-      <p class="text-meta mb-5">{{ site.church }} · {{ site.city }}</p>
-      <h1 class="font-display text-4xl sm:text-5xl md:text-7xl text-ink">
-        {{ site.name }}
-      </h1>
-      <p class="mt-5 max-w-xl mx-auto text-base md:text-lg text-ink-soft leading-relaxed">
-        Histoire, mémoire et archives d’une maison de rassemblement.
-      </p>
-      <div class="mt-8 flex flex-col sm:flex-row gap-3 sm:items-center justify-center">
-        <RouterLink to="/histoire" class="neu-btn-primary">Découvrir l’histoire</RouterLink>
-        <RouterLink to="/mediatheque" class="neu-btn">Voir les vidéos</RouterLink>
+    <div class="hero-desk hidden lg:block">
+      <div class="hero-desk-card">
+        <div class="hero-desk-copy">
+          <div class="hero-desk-inner">
+            <p class="hero-bio">{{ site.church }} · {{ site.city }}</p>
+            <h1 class="hero-desk-title">{{ site.name }}</h1>
+            <p class="hero-desk-lead">
+              Histoire, mémoire et archives d’une maison de rassemblement.
+            </p>
+            <div class="hero-desk-stats" role="list">
+              <div v-for="stat in stats" :key="stat.label" class="hero-desk-stat" role="listitem">
+                <p class="stat-value">{{ stat.value }}</p>
+                <p class="stat-label">{{ stat.label }}</p>
+              </div>
+            </div>
+            <div class="hero-desk-actions">
+              <RouterLink to="/histoire" class="neu-btn-primary">Découvrir l’histoire</RouterLink>
+              <RouterLink to="/mediatheque" class="neu-btn">Voir les vidéos</RouterLink>
+            </div>
+          </div>
+        </div>
+        <figure class="hero-desk-photo" aria-hidden="true">
+          <img
+            v-for="(src, i) in slides"
+            :key="src"
+            :src="src"
+            alt=""
+            class="hero-slide"
+            :class="{ 'is-active': i === index }"
+          />
+        </figure>
       </div>
     </div>
   </section>
@@ -250,37 +297,124 @@ const stats = [
   border-radius: 999px;
   background: var(--neu-blue);
 }
-.hero-card {
-  width: min(920px, 100%);
-  margin: 0 auto;
-  text-align: center;
+.hero-desk {
+  width: 100%;
+  height: 100%;
+}
+.hero-desk-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
   background: var(--neu-bg);
-  border-radius: 40px;
-  box-shadow: var(--neu-raised);
-  padding: 4rem 3.5rem 3.25rem;
 }
-.hero-logo {
-  display: inline-block;
-  margin: 0 auto 1.5rem;
+.hero-desk-copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  margin-right: -3.5rem;
+  padding: 6.5rem 7% 4.5rem;
+  background: linear-gradient(
+    90deg,
+    var(--neu-bg) 0%,
+    var(--neu-bg) 74%,
+    transparent 100%
+  );
 }
-.hero-logo:hover :deep(.site-logo),
-.hero-logo:focus-visible :deep(.site-logo) {
-  transform: scale(1.1) translateY(-4px);
-  filter: drop-shadow(0 16px 28px rgba(74, 144, 226, 0.4));
+.hero-desk-inner {
+  width: 100%;
+  max-width: 32rem;
+  text-align: center;
+}
+.hero-desk-title {
+  margin: 0.45rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 4vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: var(--color-ink);
+}
+.hero-desk-lead {
+  margin: 0.9rem auto 0;
+  max-width: 24rem;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+}
+.hero-desk-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  margin-top: 1.35rem;
+  padding: 0.85rem 0.2rem;
+  border-radius: 20px;
+  box-shadow: var(--neu-inset);
+}
+.hero-desk-stat {
+  text-align: center;
+}
+.hero-desk-actions {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+  padding: 0.4rem 0.15rem 0.65rem;
+}
+.hero-desk-actions :deep(.neu-btn),
+.hero-desk-actions :deep(.neu-btn-primary) {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+.hero-desk-photo {
+  position: relative;
+  z-index: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 1.15s ease, transform 6.4s ease-out;
+}
+.hero-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 0;
 }
 @media (min-width: 1024px) {
   .hero {
-    min-height: 100dvh;
-    display: grid;
-    place-items: center;
-    padding: 8rem 1.25rem 2.5rem;
+    height: 100dvh;
+    padding: 0;
+  }
+  .hero-desk {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-avatar:hover :deep(.site-logo),
-  .hero-logo:hover :deep(.site-logo) {
+  .hero-avatar:hover :deep(.site-logo) {
     transform: none;
     filter: none;
+  }
+  .hero-slide {
+    transform: none;
+    transition: none;
   }
 }
 </style>

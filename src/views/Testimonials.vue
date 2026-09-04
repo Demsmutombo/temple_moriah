@@ -13,11 +13,12 @@ const query = ref('')
 const category = ref('all')
 const filtered = computed(() => {
   const q = query.value.trim().toLowerCase()
-  return testimonials.filter((t) => {
-    const matchCat = category.value === 'all' || t.category === category.value
-    const hay = `${t.name} ${t.excerpt || ''} ${t.recit || ''} ${t.relation || ''}`.toLowerCase()
-    return matchCat && (!q || hay.includes(q))
-  })
+  return testimonials
+    .filter((t) => {
+      const matchCat = category.value === 'all' || t.category === category.value
+      const hay = `${t.name} ${t.excerpt || ''} ${t.recit || ''} ${t.relation || ''}`.toLowerCase()
+      return matchCat && (!q || hay.includes(q))
+    })
 })
 </script>
 

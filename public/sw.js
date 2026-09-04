@@ -1,11 +1,13 @@
-const CACHE = 'temple-moriah-v3'
+const CACHE = 'temple-moriah-v4'
 
 const PRECACHE = [
   '/',
   '/index.html',
   '/manifest.webmanifest',
+  '/screempage.jfif',
   '/icons/pwa-192.png',
   '/icons/pwa-512.png',
+  '/icons/pwa-512-maskable.png',
   '/icons/apple-touch-icon.png',
 ]
 

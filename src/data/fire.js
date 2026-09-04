@@ -6,8 +6,19 @@
 export const fireRecord = {
   date: '2026-05-17',
   displayDate: 'Dimanche 17 mai 2026',
-  title: 'Le 17 mai 2026',
+  title: 'Sinistre majeur — 17 mai 2026',
   location: 'Temple Moriah, Shekinah Tabernacle, 18 boulevard Lumumba, quartier Debonhomme, commune de Matete, Kinshasa',
+  officialLead:
+    'Le 17 mai 2026, un incendie dévastateur a ravagé le Temple Moriah de Shekinah Tabernacle, détruisant une grande partie de l’édifice et causant de très lourdes pertes matérielles.',
+  images: ['ph-facade-apres', 'ph-sanctuaire-apres', 'ph-balcon-apres', 'ph-toiture-apres'],
+  videos: ['vid-temple-incendie'],
+  damages: [
+    { id: 'facade', title: 'Façade principale', text: 'La façade a subi d’importants dommages structurels.', photoId: 'ph-facade-apres' },
+    { id: 'sanctuaire', title: 'Sanctuaire intérieur', text: 'L’intérieur du sanctuaire, autrefois lieu de rassemblement, a été consumé.', photoId: 'ph-sanctuaire-apres' },
+    { id: 'balcon', title: 'Vue du balcon', text: 'Le balcon et les structures adjacentes ont été fortement fragilisés.', photoId: 'ph-balcon-apres' },
+    { id: 'toiture', title: 'Toiture et charpente', text: 'La toiture s’est effondrée. La charpente métallique a été détruite, laissant l’édifice à ciel ouvert.', photoId: 'ph-toiture-apres' },
+    { id: 'equipements', title: 'Équipements et archives', text: 'Le système de sonorisation a disparu. La chaire principale, le bureau d’accueil des délégations et des archives pastorales ont été atteints.' },
+  ],
   sections: {
     jour: {
       title: 'Le jour de l’événement',
@@ -28,7 +39,7 @@ export const fireRecord = {
           status: 'verified',
         },
         {
-          text: 'Les dégâts matériels sont considérables : une grande partie de l’édifice et de ses équipements (sonorisation, mobilier, installations intérieures) a été atteinte.',
+          text: 'Les dégâts matériels sont considérables : charpente, toiture, intérieur du sanctuaire, sonorisation, chaire, bureau d’accueil et une part des archives ont été atteints.',
           status: 'verified',
         },
         {
@@ -40,11 +51,11 @@ export const fireRecord = {
           status: 'verified',
         },
         {
-          text: 'Le gouverneur de la ville-province de Kinshasa, Daniel Bumba, s’est rendu sur place afin d’évaluer les dégâts.',
+          text: 'La communication de l’Église présente ensuite un feu d’origine accidentelle, propagé en quelques heures.',
           status: 'verified',
         },
         {
-          text: 'Les causes exactes n’étaient pas établies au moment des premières communications publiques. Des hypothèses (dont un dysfonctionnement électrique évoqué par des responsables de l’église) ont circulé ; elles ne constituent pas une conclusion d’enquête.',
+          text: 'Le gouverneur de la ville-province de Kinshasa, Daniel Bumba, s’est rendu sur place afin d’évaluer les dégâts.',
           status: 'verified',
         },
       ],
@@ -54,13 +65,11 @@ export const fireRecord = {
       kind: 'fait',
       paragraphs: [
         'Le pasteur Richard Diyoka s’exprime le jour même devant les fidèles, appelle au calme et à la solidarité, et remercie les personnalités religieuses et les autorités venues témoigner leur soutien.',
-        'Des séances de prière et de communion sont annoncées. Une équipe doit être mise en place pour évaluer les dégâts.',
-        'Dans les jours suivants, l’assemblée se rassemble à nouveau, notamment le 24 mai 2026. Plus tard, une expertise structurelle conduira à la décision de démolir entièrement l’édifice pour reconstruire.',
+        'L’assemblée est contrainte de tenir le culte dehors, pour adorer et rendre grâce au milieu de l’épreuve.',
+        'Le 24 mai 2026, une semaine plus tard, un culte à ciel ouvert se tient sur le parvis. Plus tard, une expertise structurelle conduira à la décision de démolir entièrement l’édifice pour reconstruire.',
       ],
     },
   },
-  images: [],
-  videos: [],
   testimonies: [],
   reactions: [
     {
@@ -68,8 +77,8 @@ export const fireRecord = {
       author: 'Daniel Bumba',
       role: 'Gouverneur de la ville-province de Kinshasa',
       kind: 'fait',
-      text: 'Présence sur les lieux le jour du sinistre, pour évaluer les dégâts. Le contenu d’une éventuelle déclaration officielle reste à verser aux archives.',
-      status: 'to_complete',
+      text: 'Présence sur les lieux le jour du sinistre, pour évaluer les dégâts.',
+      status: 'verified',
     },
   ],
 }

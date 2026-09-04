@@ -6,7 +6,8 @@ export const afterFireEvents = [
     title: 'Appel au calme',
     kind: 'parole',
     status: 'verified',
-    description: 'Dans un message adressé aux fidèles au soir du drame, le pasteur Richard Diyoka appelle les croyants au calme et à la solidarité, et remercie les nombreuses personnalités religieuses et autorités venues lui témoigner leur soutien.',
+    description:
+      'Dans un message adressé aux fidèles au soir du drame, le pasteur Richard Diyoka appelle les croyants au calme et à la solidarité, et remercie les nombreuses personnalités religieuses et autorités venues lui témoigner leur soutien.',
   },
   {
     id: 'culte-24-mai',
@@ -16,7 +17,11 @@ export const afterFireEvents = [
     kind: 'fait',
     status: 'verified',
     featured: true,
-    description: 'Une semaine après l’incendie, Shekinah Tabernacle se rassemble. Le pasteur Richard Diyoka prêche un message intitulé « Un prophète qui rougit ». Photographies, vidéos et paroles intégrales de ce culte seront versées aux archives dès qu’elles seront disponibles.',
+    photoId: 'ph-culte-ciel-ouvert',
+    description:
+      'Sept jours après le sinistre, le dimanche soir 24 mai 2026, l’assemblée se rassemble sur le parvis extérieur. Le pasteur Richard Diyoka prêche « Un prophète qui rougit ». La communication de l’Église décrit des milliers de fidèles venus chanter, louer Dieu et proclamer le début de la reconstruction.',
+    quote:
+      'La structure matérielle est à terre, mais notre ferveur est debout. Nous nous relevons dès aujourd’hui.',
     sermon: {
       title: 'Un prophète qui rougit',
       speaker: 'Pasteur Richard Diyoka',
@@ -31,10 +36,12 @@ export const afterFireEvents = [
     id: 'communique-remerciement',
     date: '2026-05',
     displayDate: 'Mai 2026',
-    title: 'Communiqué de remerciement',
+    title: 'Remerciements pour votre compassion',
     kind: 'parole',
     status: 'verified',
-    description: 'Le Révérend Richard Diyoka, pasteur de Shekinah Tabernacle, et toute sa communauté remercient sincèrement tous ceux qui, par un élan d’amour du prochain, ont manifesté leur compassion en cette période d’épreuves.',
+    description:
+      'Le Révérend Pasteur Richard Diyoka Nsanguluja et Shekinah Tabernacle remercient ceux qui, par la prière et la générosité, ont manifesté leur compassion durant cette épreuve.',
+    quote: 'Que Dieu vous bénisse abondamment',
   },
 ]
 

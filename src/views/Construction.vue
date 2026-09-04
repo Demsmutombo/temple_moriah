@@ -3,13 +3,16 @@ import PageHero from '@/components/layout/PageHero.vue'
 import PeriodNav from '@/components/navigation/PeriodNav.vue'
 import SectionHeading from '@/components/common/SectionHeading.vue'
 import KindBadge from '@/components/common/KindBadge.vue'
-import EmptyArchive from '@/components/common/EmptyArchive.vue'
 import ScrollReveal from '@/components/common/ScrollReveal.vue'
 import AccordionRow from '@/components/common/AccordionRow.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
 import ChapterVideos from '@/components/video/ChapterVideos.vue'
-import { constructionStages } from '@/data'
+import { constructionStages, photos } from '@/data'
+
+function stagePhoto(stage) {
+  return photos.find((p) => p.id === stage.photoId && p.src) || null
+}
 </script>
 
 <template>
@@ -17,7 +20,7 @@ import { constructionStages } from '@/data'
     <PageHero
       period="II — 2011 — 2018"
       title="La construction"
-      subtitle="Sept années pour élever le Temple Moriah. Cette chronologie n’ajoute aucune étape non documentée : chaque case peut recevoir date, photographie, témoignage et document."
+      subtitle="Sept années pour élever le Temple Moriah : première pierre, charpente, maçonnerie, finitions et parvis."
     />
     <PeriodNav />
 
@@ -30,8 +33,14 @@ import { constructionStages } from '@/data'
           :title="stage.title"
           :subtitle="`${stage.date} · ${stage.description}`"
         >
-          <p>{{ stage.description }}</p>
-          <p class="mt-2 text-caption">{{ stage.date }}</p>
+            <p>{{ stage.description }}</p>
+            <p class="mt-2 text-caption">{{ stage.date }}</p>
+            <img
+              v-if="stagePhoto(stage)"
+              :src="stagePhoto(stage).src"
+              :alt="stagePhoto(stage).title"
+              class="mt-3 w-full rounded-2xl object-cover aspect-[16/10]"
+            />
         </AccordionRow>
       </SuggestList>
       <ChapterVideos category="construction" />
@@ -44,7 +53,7 @@ import { constructionStages } from '@/data'
       <SectionHeading
         eyebrow="Chronologie visuelle"
         title="Les étapes du chantier"
-        subtitle="Galerie chronologique. Les photographies historiques seront versées au fur et à mesure."
+        subtitle="Le parcours officiel du chantier, avec les vues de l’édifice achevé."
       />
 
       <ol class="relative">
@@ -62,18 +71,14 @@ import { constructionStages } from '@/data'
               <KindBadge :kind="stage.kind" />
             </div>
             <p class="mt-4 text-ink-soft leading-relaxed">{{ stage.description }}</p>
-            <dl class="mt-6 grid sm:grid-cols-2 gap-3 text-caption">
-              <div>Photo · {{ stage.photo ? 'disponible' : 'à verser' }}</div>
-              <div>Vidéo · {{ stage.video ? 'disponible' : 'à verser' }}</div>
-              <div>Témoignage · {{ stage.testimony ? 'disponible' : 'à verser' }}</div>
-              <div>Document · {{ stage.document ? 'disponible' : 'à verser' }}</div>
-            </dl>
+            <figure v-if="stagePhoto(stage)" class="mt-5 overflow-hidden rounded-2xl">
+              <img :src="stagePhoto(stage).src" :alt="stagePhoto(stage).caption || stagePhoto(stage).title" class="w-full aspect-[16/10] object-cover" />
+            </figure>
             <p v-if="stage.people.length" class="mt-4 text-caption">Personnes : {{ stage.people.join(', ') }}</p>
           </ScrollReveal>
         </li>
       </ol>
 
-      <EmptyArchive class="mt-10" title="Galerie photographique du chantier" text="Les images de la construction — fondations, élévation, colonnes, achèvement — n’ont pas encore été déposées dans cette plateforme." />
       <ChapterVideos category="construction" />
     </section>
 

@@ -22,7 +22,7 @@ const filterItems = computed(() =>
   <div>
     <PageHero
       title="Médiathèque"
-      subtitle="Visites, consolation, paroles du pasteur, puis le fil de l’histoire."
+      subtitle="Les médias suivent le fil de l’histoire : construction, dédicace, épreuve, puis relèvement."
     />
     <section class="mx-auto max-w-6xl px-4 lg:px-5 py-4 lg:py-16">
       <div class="flex flex-col gap-3 lg:gap-6 mb-4 lg:mb-12">

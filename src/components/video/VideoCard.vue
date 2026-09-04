@@ -1,7 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { displayVideo } from '@/composables/useYoutubeMeta'
-import { youtubeThumb } from '@/utils/youtube'
 import { videoCategoryLabel } from '@/data'
 
 const props = defineProps({
@@ -13,10 +12,7 @@ const emit = defineEmits(['play'])
 const shown = computed(() => displayVideo(props.video))
 const categoryName = computed(() => videoCategoryLabel(shown.value.category))
 const broken = ref(false)
-const thumbSrc = computed(() => {
-  if (broken.value && shown.value.youtubeId) return youtubeThumb(shown.value.youtubeId, 'mqdefault')
-  return shown.value.thumbnail
-})
+const thumbSrc = computed(() => (broken.value ? '' : shown.value.thumbnail))
 </script>
 
 <template>
@@ -24,7 +20,7 @@ const thumbSrc = computed(() => {
     <button type="button" class="video-hit" :aria-label="`Lire : ${shown.title}`" @click="emit('play', video)">
       <div class="thumb">
         <img
-          v-if="thumbSrc && !broken"
+          v-if="thumbSrc"
           :src="thumbSrc"
           :alt="shown.title"
           width="480"
@@ -33,17 +29,8 @@ const thumbSrc = computed(() => {
           referrerpolicy="no-referrer"
           @error="broken = true"
         />
-        <img
-          v-else-if="shown.youtubeId && broken"
-          :src="youtubeThumb(shown.youtubeId, 'mqdefault')"
-          :alt="shown.title"
-          width="320"
-          height="180"
-          loading="lazy"
-          referrerpolicy="no-referrer"
-        />
         <div v-else class="thumb-fallback">
-          <span class="text-meta">{{ shown.displayDate }}</span>
+          <span class="text-meta">{{ shown.displayDate || shown.title }}</span>
         </div>
         <span class="play" aria-hidden="true">▶</span>
       </div>

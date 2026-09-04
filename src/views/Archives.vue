@@ -8,6 +8,7 @@ import EmptyArchive from '@/components/common/EmptyArchive.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
 import { documents, youtubeVideos, pastorMessages, videoCategoryLabel } from '@/data'
+import { dateKey } from '@/utils/chrono'
 
 const query = ref('')
 const type = ref('all')
@@ -21,12 +22,13 @@ const typeFilters = [
 
 const allArchives = computed(() => {
   const items = [
-    ...documents.map((d) => ({ ...d, search: `${d.title} ${d.description}` })),
+    ...documents.map((d) => ({ ...d, sortDate: d.date, search: `${d.title} ${d.description}` })),
     ...youtubeVideos.map((v) => ({
       id: v.id,
       type: 'vidéos',
       title: v.title,
       date: v.displayDate,
+      sortDate: v.date,
       category: v.category,
       categoryLabel: videoCategoryLabel(v.category),
       description: v.description,
@@ -37,12 +39,13 @@ const allArchives = computed(() => {
       type: 'discours',
       title: m.title || m.event,
       date: m.displayDate,
+      sortDate: m.date,
       category: 'messages',
       status: 'verified',
       description: m.editorialSummary,
       search: `${m.author} ${m.event} ${m.quoteOriginal || ''} ${m.editorialSummary}`,
     })),
-  ]
+  ].sort((a, b) => (dateKey(a.sortDate || a.date) || '9999').localeCompare(dateKey(b.sortDate || b.date) || '9999'))
   const q = query.value.trim().toLowerCase()
   return items.filter((i) => {
     const matchType = type.value === 'all' || i.type === type.value
