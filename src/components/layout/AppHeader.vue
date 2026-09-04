@@ -9,6 +9,7 @@ const route = useRoute()
 const open = ref(false)
 const scrolled = ref(false)
 const openGroup = ref(null)
+const desktopNav = navItems.filter((item) => !['/livre-de-memoire', '/a-propos'].includes(item.path))
 
 function onScroll() {
   scrolled.value = window.scrollY > 12
@@ -40,8 +41,8 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
         </span>
       </RouterLink>
 
-      <nav class="hidden xl:flex items-center gap-1" aria-label="Navigation principale">
-        <div v-for="item in navItems" :key="item.path" class="relative group">
+      <nav class="hidden lg:flex items-center gap-0.5 nav-scroll" aria-label="Navigation principale">
+        <div v-for="item in desktopNav" :key="item.path" class="relative group">
           <RouterLink
             :to="item.path"
             class="nav-link"
@@ -58,10 +59,17 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
       </nav>
 
       <div class="bar-end">
+        <RouterLink to="/search" class="neu-icon search-btn" aria-label="Recherche">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7" />
+            <path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+          </svg>
+        </RouterLink>
         <ThemeToggle variant="icon" />
+        <RouterLink to="/livre-de-memoire" class="neu-btn-primary header-cta hidden 2xl:inline-flex">Livre de mémoire</RouterLink>
         <button
           type="button"
-          class="neu-icon xl:hidden text-sm font-semibold"
+          class="neu-icon lg:hidden text-sm font-semibold"
           :aria-expanded="open"
           aria-controls="mobile-nav"
           @click="open = !open"
@@ -139,11 +147,28 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 }
 .nav-link {
   display: inline-flex;
-  padding: 0.55rem 0.85rem;
+  padding: 0.5rem 0.62rem;
   border-radius: 999px;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: var(--color-ink-soft);
+  white-space: nowrap;
+}
+.nav-scroll {
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-scroll::-webkit-scrollbar {
+  display: none;
+}
+.search-btn {
+  width: 2.45rem;
+  height: 2.45rem;
+}
+.header-cta {
+  padding: 0.55rem 1rem;
+  font-size: 0.78rem;
 }
 .nav-link.is-active,
 .nav-link:hover {

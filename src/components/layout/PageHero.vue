@@ -13,7 +13,9 @@ defineProps({
 <template>
   <header class="page-hero">
     <div class="page-hero-mobile lg:hidden">
-      <p v-if="period" class="text-meta">{{ period }}</p>
+      <p v-if="period || eyebrow" class="text-meta">{{ period || eyebrow }}</p>
+      <h1>{{ title }}</h1>
+      <p v-if="subtitle" class="lead">{{ subtitle }}</p>
       <slot />
     </div>
 
@@ -37,10 +39,22 @@ defineProps({
 
 <style scoped>
 .page-hero-mobile {
-  padding: 0.2rem 1.1rem 0.55rem;
+  padding: 0.55rem var(--page-gutter) 1rem;
 }
-.page-hero-mobile :deep(p) {
-  font-size: 0.88rem;
+.page-hero-mobile h1 {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.page-hero-mobile .lead {
+  margin: 0.55rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--color-ink-soft);
 }
 .page-hero-desktop {
   max-width: 64rem;

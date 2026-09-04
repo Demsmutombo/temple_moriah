@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue'
 import { RouterView } from 'vue-router'
 import router from '@/router'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
-import SplashScreen from '@/components/layout/SplashScreen.vue'
+import AppIntro from '@/components/loading/AppIntro.vue'
 import InstallAppBanner from '@/components/layout/InstallAppBanner.vue'
 import { youtubeVideos } from '@/data'
 import { prefetchYoutubeMeta } from '@/composables/useYoutubeMeta'
@@ -23,7 +23,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <SplashScreen />
+  <AppIntro />
   <InstallAppBanner />
   <p v-if="loadError" class="load-error" role="alert">{{ loadError }}</p>
   <DefaultLayout>

@@ -56,7 +56,8 @@ function itemPath(item) {
 .row-title {
   font-family: var(--font-display);
   font-size: 0.95rem;
-  line-height: 1.25;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 .row-sub {
   margin-top: 0.15rem;

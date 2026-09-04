@@ -31,6 +31,12 @@ function goBack() {
       <h1 class="topbar-title">{{ isHome ? 'Temple Moriah' : pageTitle }}</h1>
 
       <div class="topbar-actions">
+        <RouterLink to="/search" class="topbar-btn" aria-label="Recherche">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.4" stroke="currentColor" stroke-width="1.7" />
+            <path d="m16 16 4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+          </svg>
+        </RouterLink>
         <ThemeToggle />
         <button type="button" class="topbar-btn" aria-label="Menu" @click="openMore">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
@@ -60,24 +66,26 @@ function goBack() {
 }
 .topbar-inner {
   display: grid;
-  grid-template-columns: 2.6rem 1fr auto;
+  grid-template-columns: 2.6rem minmax(0, 1fr) auto;
   align-items: center;
-  min-height: 3.15rem;
-  padding: 0.35rem 1rem;
-  gap: 0.5rem;
+  min-height: 3.35rem;
+  padding: 0.45rem 0.85rem 0.4rem;
+  gap: 0.45rem;
 }
 .topbar-title {
   margin: 0;
   text-align: center;
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   font-weight: 650;
   letter-spacing: -0.03em;
-  line-height: 1.2;
+  line-height: 1.25;
   color: var(--color-ink);
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 .topbar.is-home .topbar-title {
   color: transparent;

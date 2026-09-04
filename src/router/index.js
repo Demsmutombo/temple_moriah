@@ -199,6 +199,15 @@ const routes = [
     },
   },
   {
+    path: '/search',
+    name: 'search',
+    component: page(() => import('@/views/Search.vue')),
+    meta: {
+      title: 'Recherche',
+      description: 'Rechercher dans l’histoire, les archives, les paroles et les médias du Temple Moriah.',
+    },
+  },
+  {
     path: '/a-propos',
     name: 'about',
     component: page(() => import('@/views/About.vue')),

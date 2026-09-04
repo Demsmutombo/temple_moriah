@@ -40,7 +40,7 @@ const message = computed(() => pastorMessages.find((m) => m.id === route.params.
       </div>
 
       <p class="text-caption">Source : {{ message.source }}</p>
-      <RouterLink to="/voix/pasteur" class="text-meta text-gold inline-block">← Toutes les paroles</RouterLink>
+      <RouterLink to="/voix/pasteur" class="text-meta text-gold inline-block">← Retour aux paroles</RouterLink>
     </article>
   </div>
   <div v-else class="mx-auto max-w-3xl px-5 py-32">

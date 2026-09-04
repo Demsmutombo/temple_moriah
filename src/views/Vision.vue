@@ -7,6 +7,7 @@ import EmptyArchive from '@/components/common/EmptyArchive.vue'
 import ScrollReveal from '@/components/common/ScrollReveal.vue'
 import AccordionRow from '@/components/common/AccordionRow.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
+import EditorialIntro from '@/components/common/EditorialIntro.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
 
 const sections = [
@@ -59,7 +60,17 @@ const sections = [
     <PeriodNav />
 
     <div class="mobile-page">
-      <MobileSectionHead title="Pour vous" />
+      <EditorialIntro
+        kicker="L’histoire"
+        title="Une mémoire qui traverse les générations"
+        text="Découvrez l’histoire du Temple Moriah, de sa vision à sa construction, de sa vie à l’épreuve de 2026. Chaque étape ouvre les archives correspondantes, sans inventer ce qui n’est pas établi."
+      />
+      <div class="mobile-cta !mt-0 !mb-5">
+        <RouterLink to="/construction" class="neu-btn">La construction</RouterLink>
+        <RouterLink to="/dedicace" class="neu-btn">La dédicace</RouterLink>
+        <RouterLink to="/epreuve" class="neu-btn">L’épreuve</RouterLink>
+      </div>
+      <MobileSectionHead title="La vision" />
       <SuggestList>
         <AccordionRow
           v-for="s in sections"
@@ -74,6 +85,20 @@ const sections = [
     </div>
 
     <article class="hidden lg:block story-stack mx-auto max-w-3xl px-4 lg:px-5 py-4 lg:py-16 md:py-24 space-y-4 lg:space-y-16">
+      <ScrollReveal>
+        <EditorialIntro
+          kicker="L’histoire"
+          title="Une mémoire qui traverse les générations"
+          text="La vision, les débuts, la construction, la dédicace, la vie du Temple, l’épreuve, les jours qui ont suivi, puis la reconstruction. Chaque étape ouvre les archives correspondantes."
+        />
+        <div class="flex flex-wrap gap-3 mb-10">
+          <RouterLink to="/construction" class="neu-btn">Construction</RouterLink>
+          <RouterLink to="/dedicace" class="neu-btn">Dédicace</RouterLink>
+          <RouterLink to="/vie-du-temple" class="neu-btn">Vie du Temple</RouterLink>
+          <RouterLink to="/epreuve" class="neu-btn">L’épreuve</RouterLink>
+          <RouterLink to="/reconstruction" class="neu-btn-primary">Reconstruction</RouterLink>
+        </div>
+      </ScrollReveal>
       <section v-for="s in sections" :key="s.title">
         <ScrollReveal>
           <div class="flex items-center gap-3 mb-4">

@@ -6,6 +6,7 @@ import KindBadge from '@/components/common/KindBadge.vue'
 import ScrollReveal from '@/components/common/ScrollReveal.vue'
 import AccordionRow from '@/components/common/AccordionRow.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
+import EditorialIntro from '@/components/common/EditorialIntro.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
 import ChapterVideos from '@/components/video/ChapterVideos.vue'
 import { constructionStages, photos } from '@/data'
@@ -25,6 +26,7 @@ function stagePhoto(stage) {
     <PeriodNav />
 
     <div class="mobile-page">
+      <EditorialIntro text="Sept années, une pierre après l’autre. Le récit du chantier précède les images et les vidéos." />
       <MobileSectionHead title="Étapes du chantier" />
       <SuggestList>
         <AccordionRow

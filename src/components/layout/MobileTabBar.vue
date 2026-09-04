@@ -166,15 +166,19 @@ const plusActive = computed(() => {
   place-items: center;
   width: 3.85rem;
   height: 3.85rem;
+  padding: 0.42rem;
+  overflow: hidden;
   border-radius: 50%;
   background: var(--neu-light);
   box-shadow: var(--neu-fab-shadow);
   border: 5px solid var(--neu-bg);
 }
 .center-btn img {
-  width: 2rem;
-  height: 1.45rem;
+  width: 2.35rem;
+  height: 2.35rem;
+  max-width: none;
   object-fit: contain;
+  object-position: center;
 }
 .tab-center.is-active .center-btn {
   box-shadow:

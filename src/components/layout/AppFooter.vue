@@ -20,6 +20,11 @@ import SiteLogo from '@/components/common/SiteLogo.vue'
             <li v-for="p in periods" :key="p.id">
               <RouterLink :to="p.path" class="hover:text-gold">{{ p.roman }}. {{ p.title }}</RouterLink>
             </li>
+            <li><RouterLink to="/archives" class="hover:text-gold">Archives</RouterLink></li>
+            <li><RouterLink to="/mediatheque" class="hover:text-gold">Médiathèque</RouterLink></li>
+            <li><RouterLink to="/voix" class="hover:text-gold">Les voix</RouterLink></li>
+            <li><RouterLink to="/livre-de-memoire" class="hover:text-gold">Livre de mémoire</RouterLink></li>
+            <li><RouterLink to="/search" class="hover:text-gold">Recherche</RouterLink></li>
           </ul>
         </div>
         <div class="md:col-span-4">
@@ -43,8 +48,8 @@ import SiteLogo from '@/components/common/SiteLogo.vue'
         </div>
       </div>
       <div class="mt-10 pt-5 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between text-caption">
-        <span>{{ site.name }} · Mémoire et archives</span>
-        <span>Shekinah Tabernacle · Kinshasa</span>
+        <span>© {{ new Date().getFullYear() }} {{ site.name }} · Mémoire et archives</span>
+        <a :href="site.officialSite" target="_blank" rel="noopener noreferrer">Site officiel · shekinahgospel.org</a>
       </div>
     </div>
   </footer>

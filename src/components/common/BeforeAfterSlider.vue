@@ -17,7 +17,13 @@ function onMove(e) {
 </script>
 
 <template>
-  <div class="ba" @mousedown="onMove" @mousemove="(e) => e.buttons === 1 && onMove(e)">
+  <div
+    class="ba"
+    @mousedown="onMove"
+    @mousemove="(e) => e.buttons === 1 && onMove(e)"
+    @touchstart.prevent="onMove"
+    @touchmove.prevent="onMove"
+  >
     <div class="ba-pane ba-before">
       <slot name="before" />
       <span class="ba-label">{{ beforeLabel }}</span>

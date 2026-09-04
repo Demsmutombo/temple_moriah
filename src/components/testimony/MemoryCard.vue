@@ -32,7 +32,12 @@ defineProps({
   font-size: 0.98rem;
 }
 .mem-card .mt-4 {
-  display: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-top: 0.45rem;
+  font-size: 0.86rem;
 }
 @media (min-width: 1024px) {
   .mem-card {

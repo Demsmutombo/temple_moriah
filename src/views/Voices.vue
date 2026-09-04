@@ -6,6 +6,7 @@ import PastorMessageCard from '@/components/testimony/PastorMessageCard.vue'
 import PersonRow from '@/components/common/PersonRow.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
+import EditorialIntro from '@/components/common/EditorialIntro.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
 import { pastorMessages } from '@/data'
 
@@ -34,6 +35,7 @@ const filteredCategories = computed(() => {
     />
 
     <section class="mobile-page">
+      <EditorialIntro text="Paroles, témoignages, visites : les personnes portent la mémoire du Temple. Choisissez une voix, puis lisez." />
       <SearchBar v-model="query" placeholder="Rechercher une voix, un témoignage" />
       <MobileSectionHead title="Suggéré pour vous" class="mt-4" />
       <SuggestList>

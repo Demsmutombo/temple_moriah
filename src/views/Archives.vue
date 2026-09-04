@@ -7,6 +7,7 @@ import ArchiveCard from '@/components/archive/ArchiveCard.vue'
 import EmptyArchive from '@/components/common/EmptyArchive.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
+import EditorialIntro from '@/components/common/EditorialIntro.vue'
 import { documents, youtubeVideos, pastorMessages, videoCategoryLabel } from '@/data'
 import { dateKey } from '@/utils/chrono'
 
@@ -62,6 +63,7 @@ const allArchives = computed(() => {
       subtitle="Photographies, vidéos, documents, discours, prédications, témoignages, chronologies, messages."
     />
     <section class="page-stack mx-auto max-w-3xl px-4 lg:px-5 py-4 lg:py-16">
+      <EditorialIntro text="Cherchez, filtrez, puis ouvrez. Les archives mélangent photographies, vidéos, discours et documents — chaque entrée mène à sa lecture complète." />
       <SearchBar v-model="query" placeholder="Rechercher une archive" />
       <div class="mt-3 lg:mt-6">
         <CategoryFilter v-model="type" :items="typeFilters" all-label="Tout" />

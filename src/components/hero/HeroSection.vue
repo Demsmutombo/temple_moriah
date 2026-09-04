@@ -136,7 +136,7 @@ onUnmounted(() => {
 }
 .hero-cover {
   position: relative;
-  height: 14.5rem;
+  height: 13.2rem;
   overflow: hidden;
   background: linear-gradient(165deg, #7eb6f0 0%, #4a90e2 48%, #3a7bc8 100%);
 }
@@ -144,7 +144,7 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center 42%;
 }
 .hero-identity {
   text-align: center;
@@ -156,7 +156,9 @@ onUnmounted(() => {
   place-items: center;
   width: 7.35rem;
   height: 7.35rem;
-  margin: -3.7rem auto 0;
+  margin: -3.25rem auto 0;
+  padding: 0.85rem;
+  overflow: hidden;
   border-radius: 50%;
   background: var(--neu-bg);
   box-shadow: var(--neu-raised);
@@ -165,8 +167,9 @@ onUnmounted(() => {
   outline-offset: 0;
 }
 .hero-avatar :deep(.site-logo) {
-  width: 4.7rem;
-  height: 3.45rem;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .hero-badge {
   position: absolute;

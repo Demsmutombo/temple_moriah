@@ -36,6 +36,10 @@
   --neu-tabbar-shadow: 0 -10px 28px rgba(36, 52, 74, 0.08);
   --neu-radius: 28px;
   --neu-radius-sm: 20px;
+  --page-gutter: 1.1rem;
+  --page-space-top: 0.9rem;
+  --section-space: 1.7rem;
+  --hero-space: 1.15rem;
 }
 
 html.theme-dark {
@@ -71,6 +75,7 @@ html.theme-dark {
   html {
     color: var(--color-ink);
     background: var(--neu-bg);
+    overflow-x: clip;
   }
 
   body {
@@ -214,7 +219,21 @@ html.theme-dark {
     width: 100%;
     max-width: 42rem;
     margin-inline: auto;
-    padding: 0.2rem 1.1rem 1.4rem;
+    padding: var(--page-space-top) var(--page-gutter) 1.6rem;
+  }
+
+  .editorial-lead {
+    margin: 0 0 var(--hero-space);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--color-ink-soft);
+  }
+
+  .page-body {
+    width: 100%;
+    max-width: 42rem;
+    margin-inline: auto;
+    padding: var(--page-space-top) var(--page-gutter) 1.6rem;
   }
 
   .mobile-cta {
@@ -410,6 +429,10 @@ html.theme-dark {
   .mobile-page,
   .mobile-cta {
     display: none;
+  }
+  .page-body {
+    max-width: 64rem;
+    padding: 1.5rem 1.25rem 5rem;
   }
 }
 

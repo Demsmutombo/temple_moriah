@@ -68,17 +68,19 @@ const open = ref(false)
   display: block;
   font-weight: 700;
   font-size: 0.95rem;
-  line-height: 1.25;
+  line-height: 1.3;
   letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
 }
 .sub {
-  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   margin-top: 0.12rem;
   font-size: 0.75rem;
+  line-height: 1.35;
   color: var(--color-muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .follow {
   flex-shrink: 0;

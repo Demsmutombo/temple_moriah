@@ -8,6 +8,7 @@ import QuoteBlock from '@/components/common/QuoteBlock.vue'
 import ScrollReveal from '@/components/common/ScrollReveal.vue'
 import AccordionRow from '@/components/common/AccordionRow.vue'
 import SuggestList from '@/components/layout/SuggestList.vue'
+import EditorialIntro from '@/components/common/EditorialIntro.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
 import ChapterVideos from '@/components/video/ChapterVideos.vue'
 import { reconstruction, biblicalReferences, beforeAfterPairs, site } from '@/data'
@@ -26,6 +27,7 @@ const hag = biblicalReferences.find((b) => b.id === 'hag1')
     <PeriodNav />
 
     <div class="mobile-page">
+      <EditorialIntro text="Expertise, décision de démolir, première pierre : le chapitre ouvert de rebâtir. Les médias suivent le récit." />
       <MobileSectionHead title="Étapes" />
       <SuggestList>
         <AccordionRow

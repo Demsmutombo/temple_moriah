@@ -47,7 +47,8 @@ const thumbSrc = computed(() => (broken.value ? '' : shown.value.thumbnail))
   background: var(--neu-bg);
   box-shadow: var(--neu-inset);
   border-radius: 16px;
-  overflow: hidden;
+  overflow: visible;
+  min-width: 0;
 }
 .video-hit {
   display: block;
@@ -64,6 +65,7 @@ const thumbSrc = computed(() => (broken.value ? '' : shown.value.thumbnail))
   aspect-ratio: 16 / 9;
   background: var(--neu-dark);
   overflow: hidden;
+  border-radius: 16px 16px 0 0;
 }
 .thumb img,
 .thumb-fallback {
@@ -94,16 +96,18 @@ const thumbSrc = computed(() => (broken.value ? '' : shown.value.thumbnail))
   z-index: 1;
 }
 .video-title {
-  padding: 0.55rem 0.65rem 0;
-  font-size: 0.85rem;
-  line-height: 1.25;
+  padding: 0.65rem 0.7rem 0;
+  font-size: 0.82rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .video-meta {
-  padding: 0.2rem 0.65rem 0.7rem;
+  padding: 0.28rem 0.7rem 0.75rem;
+  overflow-wrap: anywhere;
 }
 .video-card.is-tile .video-title {
   font-size: 0.72rem;

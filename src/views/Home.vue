@@ -28,17 +28,13 @@ const mediaVideos = youtubeVideos
     <HeroSection />
 
     <section class="home-mobile lg:hidden">
-      <div class="mobile-page !pt-1">
-        <MobileSectionHead title="Médias">
-          <RouterLink to="/mediatheque" class="text-caption text-gold">Tout voir</RouterLink>
-        </MobileSectionHead>
-        <VideoSections :videos="mediaVideos" variant="tile" />
-      </div>
-
-      <div class="mobile-page !pt-4">
-        <MobileSectionHead title="Suggéré pour vous">
+      <div class="mobile-page">
+        <MobileSectionHead title="Le récit">
           <RouterLink to="/histoire" class="text-caption text-gold">Tout voir</RouterLink>
         </MobileSectionHead>
+        <p class="editorial-lead">
+          De la vision à la reconstruction : un parcours pour comprendre le Temple avant d’ouvrir les archives.
+        </p>
         <SuggestList>
           <PersonRow
             v-for="line in introLines"
@@ -49,6 +45,13 @@ const mediaVideos = youtubeVideos
             action="Ouvrir"
           />
         </SuggestList>
+      </div>
+
+      <div class="mobile-page !pt-2">
+        <MobileSectionHead title="Médias">
+          <RouterLink to="/mediatheque" class="text-caption text-gold">Tout voir</RouterLink>
+        </MobileSectionHead>
+        <VideoSections :videos="mediaVideos" variant="tile" />
       </div>
     </section>
 

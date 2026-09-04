@@ -19,7 +19,13 @@ function open(video) {
 
 <template>
   <div>
-    <ul class="video-grid" :class="variant === 'tile' ? 'is-tile' : 'is-card'">
+    <ul
+      class="video-grid"
+      :class="[
+        variant === 'tile' ? 'is-tile' : 'is-card',
+        list.length === 1 ? 'is-single' : '',
+      ]"
+    >
       <li v-for="video in list" :key="video.id">
         <VideoCard :video="video" :variant="variant" @play="open(video)" />
       </li>
@@ -37,6 +43,10 @@ function open(video) {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.75rem;
 }
+.video-grid.is-single {
+  grid-template-columns: minmax(0, 22rem);
+  justify-content: center;
+}
 .video-grid.is-tile {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -45,6 +55,9 @@ function open(video) {
   .video-grid.is-tile {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.25rem;
+  }
+  .video-grid.is-single {
+    grid-template-columns: minmax(0, 36rem);
   }
 }
 </style>
