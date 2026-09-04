@@ -68,7 +68,7 @@ const allArchives = computed(() => {
       <div class="mt-3 lg:mt-6">
         <CategoryFilter v-model="type" :items="typeFilters" all-label="Tout" />
       </div>
-      <MobileSectionHead title="Suggéré pour vous" class="mt-4 lg:hidden">
+      <MobileSectionHead title="Les archives" class="mt-4 lg:hidden">
         <RouterLink to="/galerie" class="neu-icon !w-8 !h-8" aria-label="Galerie">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
             <rect x="4" y="5" width="16" height="14" rx="2.5" stroke="currentColor" stroke-width="1.7" />

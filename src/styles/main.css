@@ -229,6 +229,11 @@ html.theme-dark {
     color: var(--color-ink-soft);
   }
 
+  .story-cards {
+    display: grid;
+    gap: 1rem;
+  }
+
   .page-body {
     width: 100%;
     max-width: 42rem;
@@ -244,8 +249,18 @@ html.theme-dark {
     margin-top: 1rem;
   }
 
+  .story-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    width: 100%;
+    margin-top: 1.25rem;
+  }
+
   .mobile-cta .neu-btn,
-  .mobile-cta .neu-btn-primary {
+  .mobile-cta .neu-btn-primary,
+  .story-cta .neu-btn,
+  .story-cta .neu-btn-primary {
     width: 100%;
   }
 
@@ -433,6 +448,17 @@ html.theme-dark {
   .page-body {
     max-width: 64rem;
     padding: 1.5rem 1.25rem 5rem;
+  }
+  .story-cards {
+    gap: 1.35rem;
+  }
+  .story-cta {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .story-cta .neu-btn,
+  .story-cta .neu-btn-primary {
+    width: auto;
   }
 }
 

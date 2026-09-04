@@ -1,42 +1,36 @@
 <script setup>
-import { computed, ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import { periods } from '@/data'
 
 const route = useRoute()
-const router = useRouter()
-const open = ref(false)
 
 function isCurrent(p) {
-  if (p.path === '/histoire') return ['/histoire', '/construction', '/dedicace', '/vie-du-temple'].includes(route.path)
-  if (p.path === '/epreuve') return ['/epreuve', '/apres-incendie', '/consolation', '/reconstruction'].includes(route.path)
+  if (p.id === 'vision') return route.path === '/histoire'
+  if (p.id === 'construction') return route.path === '/construction'
+  if (p.id === 'vie') return ['/dedicace', '/vie-du-temple'].includes(route.path)
+  if (p.id === 'epreuve') return ['/epreuve', '/apres-incendie', '/consolation', '/reconstruction'].includes(route.path)
   return route.path === p.path
 }
 
 const current = computed(() => periods.find(isCurrent) || periods[0])
-
-function go(path) {
-  open.value = false
-  if (path !== route.path) router.push(path)
-}
 </script>
 
 <template>
   <nav class="period-nav" aria-label="Les quatre périodes">
-    <div class="period-mobile lg:hidden">
-      <button type="button" class="period-now" :aria-expanded="open" @click="open = !open">
-        <span>{{ current.roman }} {{ current.title }}</span>
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
-          <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-        </svg>
-      </button>
-      <ul v-if="open" class="period-menu">
-        <li v-for="p in periods" :key="p.id">
-          <button type="button" class="period-option" :class="{ 'is-current': isCurrent(p) }" @click="go(p.path)">
-            {{ p.roman }} · {{ p.title }}
-          </button>
-        </li>
-      </ul>
+    <div class="period-mobile lg:hidden" role="tablist" :aria-label="current.title">
+      <RouterLink
+        v-for="p in periods"
+        :key="p.id"
+        :to="p.path"
+        class="period-chip"
+        :class="{ 'is-current': isCurrent(p) }"
+        role="tab"
+        :aria-selected="isCurrent(p)"
+      >
+        <span class="chip-roman">{{ p.roman }}</span>
+        {{ p.title }}
+      </RouterLink>
     </div>
 
     <div class="period-rail hidden lg:grid">
@@ -58,45 +52,43 @@ function go(path) {
 .period-nav {
   max-width: 80rem;
   margin: 0 auto;
-  padding: 0 var(--page-gutter) 0.65rem;
+  padding: 0 var(--page-gutter) 0.85rem;
 }
-.period-now {
+.period-mobile {
   display: flex;
+  flex-wrap: nowrap;
+  gap: 0.55rem;
+  overflow-x: auto;
+  padding: 0.2rem 0.1rem 0.45rem;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.period-mobile::-webkit-scrollbar {
+  display: none;
+}
+.period-chip {
+  flex: 0 0 auto;
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.6rem;
-  width: 100%;
-  padding: 0.7rem 1rem;
-  border: 0;
+  gap: 0.4rem;
+  padding: 0.62rem 0.95rem 0.62rem 0.75rem;
   border-radius: 999px;
   background: var(--neu-bg);
   box-shadow: var(--neu-raised-sm);
   color: inherit;
+  font-size: 0.82rem;
   font-weight: 650;
-  text-align: left;
+  white-space: nowrap;
+  text-decoration: none;
 }
-.period-menu {
-  margin: 0.45rem 0 0;
-  padding: 0.4rem;
-  list-style: none;
-  background: var(--neu-bg);
-  border-radius: 18px;
-  box-shadow: var(--neu-raised);
-}
-.period-option {
-  display: block;
-  width: 100%;
-  padding: 0.7rem 0.85rem;
-  border: 0;
-  border-radius: 14px;
-  background: none;
-  text-align: left;
-  color: inherit;
-  font-weight: 600;
-}
-.period-option.is-current {
+.chip-roman {
   color: var(--neu-blue);
-  box-shadow: var(--neu-inset);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+}
+.period-chip.is-current {
+  color: var(--neu-blue);
+  box-shadow: var(--neu-inset), inset 3px 0 0 var(--neu-blue);
 }
 .period-rail {
   display: grid;

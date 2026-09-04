@@ -5,19 +5,19 @@ import ScrollReveal from '@/components/common/ScrollReveal.vue'
 import Timeline from '@/components/timeline/Timeline.vue'
 import QuoteBlock from '@/components/common/QuoteBlock.vue'
 import PeriodNav from '@/components/navigation/PeriodNav.vue'
-import PersonRow from '@/components/common/PersonRow.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
-import SuggestList from '@/components/layout/SuggestList.vue'
+import MediaTextCard from '@/components/common/MediaTextCard.vue'
 import VideoSections from '@/components/video/VideoSections.vue'
 import { historyEvents, periods, site, youtubeVideos } from '@/data'
+import { photoSrc } from '@/utils/archiveImage'
 
 const introLines = [
-  { title: 'Une vision.', text: 'Avant les murs, une assemblée et une vocation.', path: '/histoire' },
-  { title: 'Une construction.', text: '2011 — 2018. Des années pour élever une maison.', path: '/construction' },
-  { title: 'Une maison de rassemblement.', text: 'Le Temple devient lieu de culte, de parole et de rencontre.', path: '/vie-du-temple' },
-  { title: 'Une mémoire.', text: 'Les personnes, les visites, les archives, les souvenirs.', path: '/archives' },
-  { title: 'Une épreuve.', text: 'Le 17 mai 2026, un incendie ravage le Temple Moriah.', path: '/epreuve' },
-  { title: 'Une reconstruction.', text: 'De la cendre à la splendeur de l’Éternel.', path: '/reconstruction' },
+  { title: 'Une vision.', text: 'Avant les murs, une assemblée et une vocation.', path: '/histoire', photoId: 'ph-facade-avant' },
+  { title: 'Une construction.', text: '2011 — 2018. Des années pour élever une maison.', path: '/construction', photoId: 'ph-toiture-avant' },
+  { title: 'Une maison de rassemblement.', text: 'Le Temple devient lieu de culte, de parole et de rencontre.', path: '/vie-du-temple', photoId: 'ph-sanctuaire-avant' },
+  { title: 'Une mémoire.', text: 'Les personnes, les visites, les archives, les souvenirs.', path: '/archives', photoId: 'ph-dedicace-vue' },
+  { title: 'Une épreuve.', text: 'Le 17 mai 2026, un incendie ravage le Temple Moriah.', path: '/epreuve', photoId: 'ph-facade-apres' },
+  { title: 'Une reconstruction.', text: 'De la cendre à la splendeur de l’Éternel.', path: '/reconstruction', photoId: 'ph-culte-ciel-ouvert' },
 ]
 
 const mediaVideos = youtubeVideos
@@ -35,16 +35,20 @@ const mediaVideos = youtubeVideos
         <p class="editorial-lead">
           De la vision à la reconstruction : un parcours pour comprendre le Temple avant d’ouvrir les archives.
         </p>
-        <SuggestList>
-          <PersonRow
+        <div class="story-cards">
+          <MediaTextCard
             v-for="line in introLines"
             :key="line.title"
+            :image="photoSrc(line.photoId)"
+            :image-alt="line.title"
+            kicker="Le récit"
             :title="line.title"
-            :subtitle="line.text"
+            :excerpt="line.text"
+            :body="line.text"
             :to="line.path"
             action="Ouvrir"
           />
-        </SuggestList>
+        </div>
       </div>
 
       <div class="mobile-page !pt-2">

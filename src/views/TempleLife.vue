@@ -5,7 +5,6 @@ import SectionHeading from '@/components/common/SectionHeading.vue'
 import HistoryCard from '@/components/archive/HistoryCard.vue'
 import EmptyArchive from '@/components/common/EmptyArchive.vue'
 import CategoryFilter from '@/components/common/CategoryFilter.vue'
-import SuggestList from '@/components/layout/SuggestList.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
 import { ref } from 'vue'
 import { templeEvents, templeEventCategories } from '@/data'
@@ -28,10 +27,10 @@ const category = ref('all')
       </div>
       <CategoryFilter v-model="category" :items="templeEventCategories" all-label="Toutes" />
 
-      <MobileSectionHead title="Suggéré pour vous" class="mt-4 lg:hidden" />
-      <SuggestList class="mt-2 lg:hidden">
+      <MobileSectionHead title="Ce que le Temple a vécu" class="mt-4 lg:hidden" />
+      <div class="story-cards mt-2 lg:hidden">
         <HistoryCard v-for="event in templeEvents" :key="event.id" :item="event" />
-      </SuggestList>
+      </div>
       <div class="mt-10 space-y-4 hidden lg:block">
         <HistoryCard v-for="event in templeEvents" :key="`d-${event.id}`" :item="event" />
         <EmptyArchive
