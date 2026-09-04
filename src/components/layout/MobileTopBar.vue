@@ -1,7 +1,9 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { useMobileNav } from '@/composables/useMobileNav'
+import SiteLogo from '@/components/common/SiteLogo.vue'
 import ThemeToggle from '@/components/common/ThemeToggle.vue'
+import { site } from '@/data'
 
 const router = useRouter()
 const { isHome, pageTitle, openMore } = useMobileNav()
@@ -13,10 +15,13 @@ function goBack() {
 </script>
 
 <template>
-  <header class="topbar lg:hidden" :class="{ 'is-home': isHome }">
+  <header class="topbar lg:hidden">
     <div class="topbar-inner">
+      <RouterLink v-if="isHome" to="/" class="topbar-logo" :aria-label="`${site.name} — accueil`">
+        <SiteLogo size="sm" />
+      </RouterLink>
       <button
-        v-if="!isHome"
+        v-else
         type="button"
         class="topbar-btn"
         aria-label="Retour"
@@ -26,9 +31,8 @@ function goBack() {
           <path d="M15.5 5.5 8.5 12l7 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </button>
-      <span v-else class="topbar-btn topbar-ghost" aria-hidden="true" />
 
-      <h1 class="topbar-title">{{ isHome ? 'Temple Moriah' : pageTitle }}</h1>
+      <h1 class="topbar-title">{{ isHome ? site.name : pageTitle }}</h1>
 
       <div class="topbar-actions">
         <RouterLink to="/search" class="topbar-btn" aria-label="Recherche">
@@ -52,25 +56,38 @@ function goBack() {
 
 <style scoped>
 .topbar {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
   z-index: 60;
+  flex-shrink: 0;
   padding-top: env(safe-area-inset-top, 0px);
-  background: color-mix(in srgb, var(--neu-bg) 94%, transparent);
-}
-.topbar.is-home {
-  background: transparent;
-  backdrop-filter: none;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-tabbar-shadow);
 }
 .topbar-inner {
   display: grid;
-  grid-template-columns: 2.6rem minmax(0, 1fr) auto;
+  grid-template-columns: 2.7rem minmax(0, 1fr) auto;
   align-items: center;
   min-height: 3.35rem;
-  padding: 0.45rem 0.85rem 0.4rem;
+  padding: 0.4rem 0.75rem;
   gap: 0.45rem;
+}
+.topbar-logo {
+  display: grid;
+  place-items: center;
+  width: 2.7rem;
+  height: 2.7rem;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-raised-sm);
+}
+.topbar-logo :deep(.site-logo) {
+  width: 1.85rem;
+  height: 1.4rem;
+  object-fit: contain;
 }
 .topbar-title {
   margin: 0;
@@ -87,13 +104,10 @@ function goBack() {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.topbar.is-home .topbar-title {
-  color: transparent;
-}
 .topbar-actions {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   justify-self: end;
 }
 .topbar-btn {
@@ -101,7 +115,6 @@ function goBack() {
   place-items: center;
   width: 2.45rem;
   height: 2.45rem;
-  justify-self: start;
   border-radius: 50%;
   background: var(--neu-bg);
   color: var(--color-ink);
@@ -109,15 +122,7 @@ function goBack() {
   border: 0;
   padding: 0;
 }
-.topbar-ghost {
-  visibility: hidden;
-  box-shadow: none;
-}
 .topbar-btn:active {
   box-shadow: var(--neu-inset);
-}
-.topbar.is-home .topbar-btn,
-.topbar.is-home :deep(.theme-round) {
-  background: color-mix(in srgb, var(--neu-bg) 88%, transparent);
 }
 </style>

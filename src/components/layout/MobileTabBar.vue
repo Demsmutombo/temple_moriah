@@ -1,7 +1,6 @@
 <script setup>
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import logo from '@/assets/images/logo.png'
 import { useMobileNav } from '@/composables/useMobileNav'
 
 const route = useRoute()
@@ -66,7 +65,7 @@ const plusActive = computed(() => {
       aria-label="Archives"
     >
       <span class="center-btn" aria-hidden="true">
-        <img :src="logo" alt="" width="34" height="24" />
+        <img src="/screempage.jfif" alt="" width="40" height="40" />
       </span>
       <span class="tab-label">Archives</span>
     </RouterLink>
@@ -103,11 +102,12 @@ const plusActive = computed(() => {
 
 <style scoped>
 .tabbar {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
+  left: auto;
+  right: auto;
+  bottom: auto;
   z-index: 60;
+  flex-shrink: 0;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   align-items: end;
@@ -166,7 +166,7 @@ const plusActive = computed(() => {
   place-items: center;
   width: 3.85rem;
   height: 3.85rem;
-  padding: 0.42rem;
+  padding: 0;
   overflow: hidden;
   border-radius: 50%;
   background: var(--neu-light);
@@ -174,11 +174,13 @@ const plusActive = computed(() => {
   border: 5px solid var(--neu-bg);
 }
 .center-btn img {
-  width: 2.35rem;
-  height: 2.35rem;
+  width: 100%;
+  height: 100%;
   max-width: none;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
+  display: block;
+  border-radius: 50%;
 }
 .tab-center.is-active .center-btn {
   box-shadow:

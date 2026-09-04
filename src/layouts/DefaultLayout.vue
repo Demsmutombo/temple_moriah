@@ -44,8 +44,8 @@ const { isHome } = useMobileNav()
   min-height: 100dvh;
 }
 .app-main {
-  padding-top: calc(3.7rem + env(safe-area-inset-top, 0px));
-  padding-bottom: calc(5.6rem + env(safe-area-inset-bottom, 0px));
+  padding-top: 0;
+  padding-bottom: 0;
   min-width: 0;
 }
 .app-main.is-home {

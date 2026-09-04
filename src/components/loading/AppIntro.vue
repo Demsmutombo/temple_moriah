@@ -1,10 +1,9 @@
 <script setup>
-import logo from '@/assets/images/logo.png'
 import LoadingDots from '@/components/loading/LoadingDots.vue'
 import { site } from '@/data'
 import { usePageLoader } from '@/composables/usePageLoader'
 
-const { phase, mode, finish } = usePageLoader()
+const { phase, finish } = usePageLoader()
 </script>
 
 <template>
@@ -12,14 +11,14 @@ const { phase, mode, finish } = usePageLoader()
     <div
       v-if="phase !== 'ready'"
       class="intro"
-      :class="{ 'is-leaving': phase === 'leaving', 'is-dots': mode === 'dots' }"
+      :class="{ 'is-leaving': phase === 'leaving' }"
       role="dialog"
       aria-modal="true"
       :aria-label="`Ouverture — ${site.name}`"
       @click="finish"
     >
-      <div v-if="mode === 'full'" class="intro-mark">
-        <img :src="logo" :alt="site.name" />
+      <div class="intro-mark">
+        <img src="/screempage.jfif" :alt="site.name" />
       </div>
       <LoadingDots />
     </div>
@@ -31,48 +30,52 @@ const { phase, mode, finish } = usePageLoader()
   position: fixed;
   inset: 0;
   z-index: 9999;
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  gap: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
   background: var(--neu-bg);
   cursor: pointer;
   touch-action: manipulation;
 }
 .intro.is-leaving {
-  animation: intro-fade 0.52s ease forwards;
+  animation: intro-fade 0.48s ease forwards;
   pointer-events: none;
 }
 .intro-mark {
-  width: min(42vw, 168px);
+  width: min(46vw, 176px);
   aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  animation: intro-breathe 3.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  border-radius: 22%;
+  overflow: hidden;
+  background: var(--neu-light);
+  box-shadow: var(--neu-raised);
+  animation: intro-breathe 2.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .intro-mark img {
   width: 100%;
   height: 100%;
   max-width: none;
-  object-fit: contain;
+  max-height: none;
+  object-fit: cover;
   object-position: center;
   display: block;
 }
 @keyframes intro-breathe {
   0% {
-    transform: scale(0.78);
-    opacity: 0.22;
+    transform: scale(0.82);
+    opacity: 0;
   }
-  42% {
+  38% {
     transform: scale(1);
     opacity: 1;
   }
-  62% {
+  72% {
     transform: scale(1);
     opacity: 1;
   }
   100% {
-    transform: scale(0.94);
+    transform: scale(0.97);
     opacity: 1;
   }
 }
@@ -83,7 +86,7 @@ const { phase, mode, finish } = usePageLoader()
 }
 @media (min-width: 1024px) {
   .intro-mark {
-    width: min(22vw, 196px);
+    width: min(20vw, 200px);
   }
 }
 @media (prefers-reduced-motion: reduce) {
