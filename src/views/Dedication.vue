@@ -20,14 +20,14 @@ const sectionPhotos = {
   <div>
     <PageHero
       tone="solemn"
-      period="III — 2018"
+      period="III — 8 — 12 août 2018"
       title="La dédicace"
-      subtitle="Août 2018. Le Temple Moriah est offert à l’Éternel. Sanctuaire, balcon, chaire et parvis deviennent maison de rassemblement."
+      subtitle="Du 8 au 12 août 2018, le Temple Moriah est offert à l’Éternel. Les prédications et la cérémonie se suivent ici, une après l’autre."
     />
     <PeriodNav />
 
     <section class="page-body">
-      <EditorialIntro text="La consécration de 2018 clôt le chantier et ouvre la vie du Temple. Le récit d’abord, les photographies ensuite." />
+      <EditorialIntro text="La consécration clôt le chantier et ouvre la vie du Temple. Le récit d’abord, puis les quinze captations de la dédicace, jour par jour, puis les photographies." />
       <div class="story-cards">
         <MediaTextCard
           v-for="s in dedication.sections"

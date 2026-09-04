@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import VideoGrid from '@/components/video/VideoGrid.vue'
+import VideoStack from '@/components/video/VideoStack.vue'
 import MediaCompanion from '@/components/media/MediaCompanion.vue'
 import { videosInCategory, videoCategoryLabel, mediaCompanion } from '@/data'
 
@@ -16,7 +16,7 @@ const companion = computed(() => mediaCompanion(props.category))
 <template>
   <section v-if="list.length" class="chapter-videos">
     <MediaCompanion :title="label" :companion="companion" />
-    <VideoGrid :videos="list" />
+    <VideoStack :videos="list" />
   </section>
 </template>
 

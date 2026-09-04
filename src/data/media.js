@@ -3,6 +3,7 @@ import { byChrono, sortChrono } from '@/utils/chrono'
 
 const DONATION_ASSETS = 'https://donation.shekinahgospel.org/assets'
 const CHURCH_2018 = 'https://shekinahgospel.org/images/church/2018'
+const DEDICACE_PLAYLIST = 'PLLxAr9HDy9_WkpXFQAV66LGyK6xDIDEsT'
 
 /** Parole ou commentaire lié à chaque temps du récit. Aucune citation inventée. */
 export const mediaCompanions = {
@@ -16,7 +17,7 @@ export const mediaCompanions = {
   },
   dedicace: {
     years: 'Août 2018',
-    comment: 'Le Temple est consacré. Sanctuaire, balcon et chaire deviennent maison de rassemblement.',
+    comment: 'Quinze captations, du 8 au 12 août 2018. Chaque prédication s’ouvre dans l’ordre des jours, sans passer à une autre vidéo.',
     word: {
       text: 'Je suis joyeux quand on me dit : Allons à la maison de l’Éternel !',
       attribution: 'Psaume 122:1',
@@ -40,7 +41,7 @@ export const mediaCompanions = {
   },
   epreuves: {
     years: 'Avant le 17 mai 2026',
-    comment: 'Une épreuve antérieure, conservée dans les archives, distincte du sinistre de 2026.',
+    comment: 'L’épreuve d’eau, distincte de l’incendie de 2026. Les captations de ce temps sont rassemblées ici.',
     word: {
       text: 'C’est là ce qui fait votre joie, quoique maintenant, puisqu’il le faut, vous soyez attristés pour un peu de temps par diverses épreuves.',
       attribution: '1 Pierre 1:6',
@@ -105,7 +106,7 @@ export function mediaCompanion(categoryId) {
 export const videoCategories = [
   { id: 'construction', label: 'Construction' },
   { id: 'dedicace', label: 'Dédicace' },
-  { id: 'epreuves', label: 'Épreuves' },
+  { id: 'epreuves', label: 'Épreuve d’eau' },
   { id: 'incendie', label: 'Le 17 mai 2026' },
   { id: 'apres-incendie', label: 'Après l’incendie' },
   { id: 'consolation', label: 'Consolation et visites' },
@@ -282,15 +283,148 @@ export const videos = [
     displayDate: '2011 — 2018',
     category: 'construction',
   }),
-  yt('07g54JOCZUk', {
-    title: 'Reportage à la dédicace de Shekinah Tabernacle, Moriah',
-    date: '2018-08',
-    displayDate: 'Août 2018',
+  yt('MwBs6V-nCfM', {
+    title: 'Pasteur Richard Diyoka',
+    date: '2018-08-08',
+    displayDate: '8 août 2018 · soir',
     category: 'dedicace',
+    speaker: 'Pasteur Richard Diyoka',
+    playlistId: DEDICACE_PLAYLIST,
+    seq: 1,
+  }),
+  yt('t43uMOBcct0', {
+    title: 'Séance du matin',
+    date: '2018-08-09',
+    displayDate: '9 août 2018 · matin',
+    category: 'dedicace',
+    playlistId: DEDICACE_PLAYLIST,
+    seq: 2,
+  }),
+  yt('nUBajTkjk7E', {
+    title: 'Pasteur Kalumbu Kiseka',
+    date: '2018-08-09',
+    displayDate: '9 août 2018 · matin',
+    category: 'dedicace',
+    speaker: 'Pasteur Kalumbu Kiseka',
+    playlistId: DEDICACE_PLAYLIST,
+    seq: 3,
+  }),
+  yt('q7zpuubZBmI', {
+    title: 'Pasteur Faustin Lukumwena',
+    date: '2018-08-09',
+    displayDate: '9 août 2018 · matin',
+    category: 'dedicace',
+    speaker: 'Pasteur Faustin Lukumwena',
+    playlistId: DEDICACE_PLAYLIST,
+    seq: 4,
+  }),
+  yt('x4cCWfqv2Ls', {
+    title: 'Pasteur Nestor Espanolla',
+    date: '2018-08-09',
+    displayDate: '9 août 2018 · soir',
+    category: 'dedicace',
+    speaker: 'Pasteur Nestor Espanolla',
+    playlistId: DEDICACE_PLAYLIST,
+    seq: 5,
+  }),
+  yt('qFtyPx0Pu_M', {
+    title: 'Pasteur Tom Rae',
+    date: '2018-08-09',
+    displayDate: '9 août 2018 · soir',
+    category: 'dedicace',
+    speaker: 'Pasteur Tom Rae',
+    playlistId: DEDICACE_PLAYLIST,
+    seq: 6,
+  }),
+  yt('MELkbGYQJWE', {
+    title: 'Rabbin Jean-Marc Rosenfeld',
+    date: '2018-08-10',
+    displayDate: '10 août 2018 · matin',
+    category: 'dedicace',
+    speaker: 'Rabbin Jean-Marc Rosenfeld',
+    playlistId: DEDICACE_PLAYLIST,
+    seq: 7,
+  }),
+  yt('lOFoBlUc_2o', {
+    title: 'Pasteur Kayumbi',
+    date: '2018-08-10',
+    displayDate: '10 août 2018 · matin',
+    category: 'dedicace',
+    speaker: 'Pasteur Kayumbi',
+    playlistId: DEDICACE_PLAYLIST,
+    seq: 8,
+  }),
+  yt('eqD_EoqHQ4w', {
+    title: 'Pasteur Peterson',
+    date: '2018-08-10',
+    displayDate: '10 août 2018 · matin',
+    category: 'dedicace',
+    speaker: 'Pasteur Peterson',
+    playlistId: DEDICACE_PLAYLIST,
+    seq: 9,
+  }),
+  yt('Gsz-I90XGPg', {
+    title: 'Pasteur Pierre Yao',
+    date: '2018-08-10',
+    displayDate: '10 août 2018 · soir',
+    category: 'dedicace',
+    speaker: 'Pasteur Pierre Yao',
+    playlistId: DEDICACE_PLAYLIST,
+    seq: 10,
+  }),
+  yt('5SVKxDVjzVA', {
+    title: 'Pasteur Veerapen Chetty',
+    date: '2018-08-11',
+    displayDate: '11 août 2018 · matin',
+    category: 'dedicace',
+    speaker: 'Pasteur Veerapen Chetty',
+    playlistId: DEDICACE_PLAYLIST,
+    seq: 11,
+  }),
+  yt('XWD7XVqLCKc', {
+    title: 'Pasteur Richard Diyoka',
+    date: '2018-08-11',
+    displayDate: '11 août 2018 · matin',
+    category: 'dedicace',
+    speaker: 'Pasteur Richard Diyoka',
+    playlistId: DEDICACE_PLAYLIST,
+    seq: 12,
+  }),
+  yt('-6rqOaC8mng', {
+    title: 'Pasteur David Mc Geary',
+    date: '2018-08-12',
+    displayDate: '12 août 2018 · matin',
+    category: 'dedicace',
+    speaker: 'Pasteur David Mc Geary',
+    playlistId: DEDICACE_PLAYLIST,
+    seq: 13,
+  }),
+  yt('pAm0PdEMoks', {
+    title: 'Cérémonie de dédicace, 1re partie',
+    date: '2018-08-12',
+    displayDate: '12 août 2018 · matin',
+    category: 'dedicace',
+    playlistId: DEDICACE_PLAYLIST,
+    seq: 14,
+  }),
+  yt('n2R2_bXcXXE', {
+    title: 'Cérémonie de dédicace, 2e partie',
+    date: '2018-08-12',
+    displayDate: '12 août 2018 · matin',
+    category: 'dedicace',
+    playlistId: DEDICACE_PLAYLIST,
+    seq: 15,
   }),
   yt('1_BjATZsrVk', {
     title: 'L’église Shekinah Tabernacle dans l’eau',
     category: 'epreuves',
+    seq: 1,
+  }),
+  yt('lVqw6CF2z-w', {
+    title: 'Honorable Auguy Kal Onji à Shekinah Tabernacle',
+    category: 'epreuves',
+    speaker: 'Honorable Auguy Kal Onji',
+    seq: 2,
   }),
   yt('kxvIY40j7Xg', {
     title: 'Premier culte après l’incendie',
@@ -316,7 +450,7 @@ export const videos = [
     description: '',
     duration: null,
     eventId: null,
-    order: 2,
+    seq: 16,
   },
   {
     id: 'vid-temple-incendie',
@@ -344,17 +478,20 @@ export function videoCategoryLabel(id) {
 }
 
 export function videosInCategory(categoryId) {
-  return youtubeVideos.filter((v) => v.category === categoryId)
+  return youtubeVideos
+    .filter((v) => v.category === categoryId)
+    .slice()
+    .sort((a, b) => (a.seq ?? 50) - (b.seq ?? 50) || String(videoSortDate(a)).localeCompare(String(videoSortDate(b))))
 }
 
 export function groupYoutubeVideos(list = youtubeVideos) {
   return videoCategories
     .map((cat) => ({
       ...cat,
-      videos: sortChrono(
-        list.filter((v) => v.category === cat.id),
-        videoSortDate,
-      ),
+      videos: list
+        .filter((v) => v.category === cat.id)
+        .slice()
+        .sort((a, b) => (a.seq ?? 50) - (b.seq ?? 50) || String(videoSortDate(a)).localeCompare(String(videoSortDate(b)))),
     }))
     .filter((group) => group.videos.length)
 }
@@ -364,7 +501,7 @@ export const photoCategories = [
   { id: 'dedicace', label: 'Dédicace' },
   { id: 'vie', label: 'Vie du Temple' },
   { id: 'avant', label: 'Avant' },
-  { id: 'epreuves', label: 'Épreuves' },
+  { id: 'epreuves', label: 'Épreuve d’eau' },
   { id: 'incendie', label: 'Le 17 mai 2026' },
   { id: 'apres-incendie', label: 'Après l’incendie' },
   { id: 'culte-ciel-ouvert', label: 'Culte en plein air' },
