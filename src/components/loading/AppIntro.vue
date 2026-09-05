@@ -1,15 +1,36 @@
 <script setup>
+import { onMounted, onUnmounted, watch } from 'vue'
 import LoadingDots from '@/components/loading/LoadingDots.vue'
 import { site } from '@/data'
 import { usePageLoader } from '@/composables/usePageLoader'
 
 const { phase, finish } = usePageLoader()
+const boot = typeof document !== 'undefined' ? document.getElementById('tm-boot') : null
+
+function applyPhase(value) {
+  if (!boot) return
+  if (value === 'leaving') boot.classList.add('is-leaving')
+  if (value === 'ready') {
+    boot.remove()
+    document.documentElement.classList.remove('tm-booting')
+  }
+}
+
+watch(phase, applyPhase, { immediate: true })
+
+onMounted(() => {
+  boot?.addEventListener('click', finish)
+  applyPhase(phase.value)
+})
+
+onUnmounted(() => {
+  boot?.removeEventListener('click', finish)
+})
 </script>
 
 <template>
-  <Teleport to="body">
+  <Teleport v-if="!boot && phase !== 'ready'" to="body">
     <div
-      v-if="phase !== 'ready'"
       class="intro"
       :class="{ 'is-leaving': phase === 'leaving' }"
       role="dialog"
@@ -63,20 +84,16 @@ const { phase, finish } = usePageLoader()
 }
 @keyframes intro-breathe {
   0% {
-    transform: scale(0.82);
-    opacity: 0;
+    transform: scale(0.94);
   }
   38% {
     transform: scale(1);
-    opacity: 1;
   }
   72% {
     transform: scale(1);
-    opacity: 1;
   }
   100% {
     transform: scale(0.97);
-    opacity: 1;
   }
 }
 @keyframes intro-fade {

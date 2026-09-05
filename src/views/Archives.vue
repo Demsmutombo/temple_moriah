@@ -6,10 +6,11 @@ import CategoryFilter from '@/components/common/CategoryFilter.vue'
 import ArchiveCard from '@/components/archive/ArchiveCard.vue'
 import EmptyArchive from '@/components/common/EmptyArchive.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
-import SuggestList from '@/components/layout/SuggestList.vue'
 import EditorialIntro from '@/components/common/EditorialIntro.vue'
+import { displayVideo } from '@/composables/useYoutubeMeta'
 import { documents, youtubeVideos, pastorMessages, videoCategoryLabel } from '@/data'
 import { dateKey } from '@/utils/chrono'
+import { imageForEvent, photoSrc } from '@/utils/archiveImage'
 
 const query = ref('')
 const type = ref('all')
@@ -23,25 +24,46 @@ const typeFilters = [
 
 const allArchives = computed(() => {
   const items = [
-    ...documents.map((d) => ({ ...d, sortDate: d.date, search: `${d.title} ${d.description}` })),
-    ...youtubeVideos.map((v) => ({
-      id: v.id,
-      type: 'vidéos',
-      title: v.title,
-      date: v.displayDate,
-      sortDate: v.date,
-      category: v.category,
-      categoryLabel: videoCategoryLabel(v.category),
-      description: v.description,
-      search: `${v.title} ${v.speaker || ''} ${videoCategoryLabel(v.category)}`,
+    ...documents.map((d) => ({
+      ...d,
+      sortDate: d.date,
+      cover:
+        d.category === 'dedicace'
+          ? photoSrc('ph-dedicace-vue')
+          : d.category === 'reconstruction'
+            ? photoSrc('ph-culte-ciel-ouvert')
+            : d.category === 'apres-incendie'
+              ? photoSrc('ph-facade-apres')
+              : photoSrc('ph-facade-avant'),
+      search: `${d.title} ${d.description}`,
     })),
+    ...youtubeVideos.map((v) => {
+      const shown = displayVideo(v)
+      return {
+        id: v.id,
+        type: 'vidéos',
+        title: shown.title,
+        date: shown.displayDate,
+        sortDate: v.date,
+        category: v.category,
+        categoryLabel: videoCategoryLabel(v.category),
+        speaker: shown.speaker,
+        youtubeId: v.youtubeId,
+        cover: shown.thumbnail,
+        description: v.description,
+        search: `${shown.title} ${shown.speaker || ''} ${videoCategoryLabel(v.category)}`,
+      }
+    }),
     ...pastorMessages.map((m) => ({
       id: m.id,
       type: 'discours',
-      title: m.title || m.event,
+      title: m.title || m.author || m.event,
       date: m.displayDate,
       sortDate: m.date,
       category: 'messages',
+      categoryLabel: m.event,
+      eventId: m.eventId,
+      cover: imageForEvent(m.eventId),
       status: 'verified',
       description: m.editorialSummary,
       search: `${m.author} ${m.event} ${m.quoteOriginal || ''} ${m.editorialSummary}`,
@@ -49,7 +71,10 @@ const allArchives = computed(() => {
   ].sort((a, b) => (dateKey(a.sortDate || a.date) || '9999').localeCompare(dateKey(b.sortDate || b.date) || '9999'))
   const q = query.value.trim().toLowerCase()
   return items.filter((i) => {
-    const matchType = type.value === 'all' || i.type === type.value
+    const matchType =
+      type.value === 'all' ||
+      i.type === type.value ||
+      (type.value === 'documents' && ['pdf', 'messages', 'documents'].includes(i.type))
     const matchQuery = !q || i.search.toLowerCase().includes(q)
     return matchType && matchQuery
   })
@@ -77,14 +102,10 @@ const allArchives = computed(() => {
           </svg>
         </RouterLink>
       </MobileSectionHead>
-      <SuggestList class="mt-1 lg:hidden">
+      <div class="archive-list">
         <ArchiveCard v-for="item in allArchives" :key="item.id" :item="item" />
-      </SuggestList>
-      <div class="mt-8 space-y-4 hidden lg:block">
-        <ArchiveCard v-for="item in allArchives" :key="`d-${item.id}`" :item="item" />
-        <EmptyArchive v-if="!allArchives.length" title="Aucun résultat" text="Aucune archive ne correspond à cette recherche." />
       </div>
-      <EmptyArchive v-if="!allArchives.length" class="lg:hidden mt-3" title="Aucun résultat" text="Aucune archive ne correspond à cette recherche." />
+      <EmptyArchive v-if="!allArchives.length" class="mt-3" title="Aucun résultat" text="Aucune archive ne correspond à cette recherche." />
       <div class="mt-6 lg:mt-10 hidden lg:flex gap-3">
         <RouterLink to="/galerie" class="neu-btn shrink-0">Galerie photo</RouterLink>
         <RouterLink to="/mediatheque" class="neu-btn shrink-0">Médiathèque</RouterLink>
@@ -93,3 +114,17 @@ const allArchives = computed(() => {
     </section>
   </div>
 </template>
+
+<style scoped>
+.archive-list {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+}
+@media (min-width: 1024px) {
+  .archive-list {
+    gap: 1rem;
+    margin-top: 1.4rem;
+  }
+}
+</style>

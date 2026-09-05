@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" class="tm-booting">
   <head>
     <meta charset="UTF-8" />
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -7,7 +7,8 @@
     <link rel="icon" type="image/png" href="/icons/favicon-48.png" sizes="48x48" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#E8EEF6" />
+    <meta name="theme-color" content="#e8eef6" />
+    <link rel="preload" href="/screempage.jfif" as="image" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -77,6 +78,126 @@
     />
   </head>
   <body>
+    <div id="tm-boot" class="tm-boot" role="dialog" aria-modal="true" aria-label="Ouverture — Temple Moriah">
+      <div class="tm-boot-mark">
+        <img src="/screempage.jfif" alt="Temple Moriah" />
+      </div>
+      <div class="tm-boot-dots" role="status" aria-label="Chargement">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <style>
+      html.tm-booting,
+      html.tm-booting body {
+        background: #e8eef6;
+        overflow: hidden;
+      }
+      html.theme-dark.tm-booting,
+      html.theme-dark.tm-booting body {
+        background: #1b2433;
+      }
+      .tm-boot {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        background: #e8eef6;
+        cursor: pointer;
+      }
+      html.theme-dark .tm-boot {
+        background: #1b2433;
+      }
+      .tm-boot-mark {
+        width: min(46vw, 176px);
+        aspect-ratio: 1;
+        border-radius: 22%;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 10px 10px 20px #c5d0e0, -10px -10px 20px #fff;
+        animation: tm-boot-breathe 2.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      html.theme-dark .tm-boot-mark {
+        background: #273348;
+        box-shadow: 10px 10px 20px #121924, -8px -8px 16px #273348;
+      }
+      .tm-boot-mark img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+      .tm-boot-dots {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.62rem;
+      }
+      .tm-boot-dots span {
+        width: 0.52rem;
+        height: 0.52rem;
+        border-radius: 50%;
+        background: #4a90e2;
+        opacity: 0.38;
+        animation: tm-boot-dot 1.8s ease-in-out infinite;
+      }
+      .tm-boot-dots span:nth-child(2) {
+        animation-delay: 0.22s;
+      }
+      .tm-boot-dots span:nth-child(3) {
+        animation-delay: 0.44s;
+      }
+      .tm-boot.is-leaving {
+        animation: tm-boot-fade 0.48s ease forwards;
+        pointer-events: none;
+      }
+      @keyframes tm-boot-breathe {
+        0% {
+          transform: scale(0.94);
+        }
+        38% {
+          transform: scale(1);
+        }
+        72% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(0.97);
+        }
+      }
+      @keyframes tm-boot-dot {
+        0%,
+        100% {
+          opacity: 0.32;
+          transform: scale(0.84);
+        }
+        35% {
+          opacity: 1;
+          transform: scale(1.18);
+          background: #5aa0f0;
+        }
+        55% {
+          opacity: 0.78;
+          transform: scale(1.04);
+        }
+      }
+      @keyframes tm-boot-fade {
+        to {
+          opacity: 0;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .tm-boot-mark,
+        .tm-boot-dots span,
+        .tm-boot.is-leaving {
+          animation: none;
+        }
+      }
+    </style>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
   </body>

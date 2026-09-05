@@ -54,13 +54,20 @@ const id = computed(() => props.youtubeId || youtubeIdFromUrl(props.src))
   background: var(--neu-bg);
   box-shadow: var(--neu-raised);
   border-radius: 28px;
-  padding: 0.75rem;
+  padding: 0.55rem;
   color: var(--color-ink);
+}
+@media (min-width: 1024px) {
+  .player {
+    padding: 0.85rem;
+  }
 }
 .native {
   width: 100%;
+  aspect-ratio: 16 / 9;
   border-radius: 22px;
   display: block;
+  object-fit: contain;
   background: #10151c;
 }
 .player-empty {

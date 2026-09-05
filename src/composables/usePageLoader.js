@@ -2,6 +2,7 @@ import { onMounted, ref } from 'vue'
 
 const phase = ref('intro')
 const mode = ref('full')
+let started = false
 
 export function usePageLoader() {
   function finish() {
@@ -10,10 +11,13 @@ export function usePageLoader() {
     window.setTimeout(() => {
       phase.value = 'ready'
       document.body.style.removeProperty('overflow')
+      document.documentElement.classList.remove('tm-booting')
     }, 480)
   }
 
   onMounted(() => {
+    if (started) return
+    started = true
     document.body.style.overflow = 'hidden'
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     mode.value = 'full'
