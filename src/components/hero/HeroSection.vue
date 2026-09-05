@@ -43,7 +43,7 @@ onUnmounted(() => {
   <section class="hero" aria-label="Ouverture">
     <div class="hero-mobile lg:hidden">
       <div class="hero-cover">
-        <img src="/screempage.jfif" alt="" />
+        <img src="/screempage.jfif" alt="Temple Moriah" />
       </div>
       <div class="hero-identity">
         <RouterLink to="/" class="hero-avatar" aria-label="Temple Moriah — accueil">
@@ -136,15 +136,18 @@ onUnmounted(() => {
 }
 .hero-cover {
   position: relative;
-  height: 13.2rem;
+  aspect-ratio: 1;
+  height: auto;
   overflow: hidden;
-  background: linear-gradient(165deg, #7eb6f0 0%, #4a90e2 48%, #3a7bc8 100%);
+  background: var(--neu-bg);
 }
 .hero-cover img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 42%;
+  object-position: center;
+  display: block;
+  transform: scale(1.08);
 }
 .hero-identity {
   text-align: center;
@@ -156,7 +159,7 @@ onUnmounted(() => {
   place-items: center;
   width: 7.35rem;
   height: 7.35rem;
-  margin: -3.25rem auto 0;
+  margin: -4.15rem auto 0;
   padding: 0.85rem;
   overflow: hidden;
   border-radius: 50%;
