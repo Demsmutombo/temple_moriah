@@ -8,7 +8,7 @@ import EmptyArchive from '@/components/common/EmptyArchive.vue'
 import MobileSectionHead from '@/components/layout/MobileSectionHead.vue'
 import EditorialIntro from '@/components/common/EditorialIntro.vue'
 import { displayVideo } from '@/composables/useYoutubeMeta'
-import { documents, youtubeVideos, pastorMessages, videoCategoryLabel } from '@/data'
+import { documents, youtubeVideos, pastorMessages, photos, photoCategories, videoCategoryLabel } from '@/data'
 import { dateKey } from '@/utils/chrono'
 import { imageForEvent, photoSrc } from '@/utils/archiveImage'
 
@@ -23,18 +23,36 @@ const typeFilters = [
 ]
 
 const allArchives = computed(() => {
+  const photoLabel = (id) => photoCategories.find((c) => c.id === id)?.label || ''
   const items = [
+    ...photos
+      .filter((p) => p.src)
+      .map((p) => ({
+        id: p.id,
+        type: 'photographies',
+        title: p.title,
+        date: p.displayDate || p.date,
+        sortDate: p.date,
+        category: p.category,
+        categoryLabel: photoLabel(p.category),
+        cover: p.src,
+        path: p.category === 'construction' ? '/construction' : '/galerie',
+        search: `${p.title} ${p.caption || ''} ${p.event || ''} ${photoLabel(p.category)}`,
+      })),
     ...documents.map((d) => ({
       ...d,
       sortDate: d.date,
       cover:
-        d.category === 'dedicace'
-          ? photoSrc('ph-dedicace-vue')
-          : d.category === 'reconstruction'
-            ? photoSrc('ph-culte-ciel-ouvert')
-            : d.category === 'apres-incendie'
-              ? photoSrc('ph-facade-apres')
-              : photoSrc('ph-facade-avant'),
+        d.category === 'construction'
+          ? photoSrc('ph-construction-1')
+          : d.category === 'dedicace'
+            ? photoSrc('ph-dedicace-vue')
+            : d.category === 'reconstruction'
+              ? photoSrc('ph-culte-ciel-ouvert')
+              : d.category === 'apres-incendie'
+                ? photoSrc('ph-facade-apres')
+                : photoSrc('ph-facade-avant'),
+      path: d.category === 'construction' ? '/construction' : d.type === 'photographies' ? '/galerie' : undefined,
       search: `${d.title} ${d.description}`,
     })),
     ...youtubeVideos.map((v) => {

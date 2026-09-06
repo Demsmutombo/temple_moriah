@@ -30,7 +30,7 @@ const filtered = computed(() => {
   <div>
     <PageHero
       title="Galerie photographique"
-      subtitle="Dédicace, façades, sanctuaire, et les jours qui ont suivi l’incendie."
+      subtitle="Chantier, dédicace, façades, sanctuaire, et les jours qui ont suivi l’incendie."
     />
     <section class="mx-auto max-w-6xl px-4 lg:px-5 py-4 lg:py-16">
       <EditorialIntro

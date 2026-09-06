@@ -30,7 +30,7 @@ const cover = computed(() => {
   if (item.youtubeId) return youtubeThumb(item.youtubeId)
   if (item.eventId) return imageForEvent(item.eventId)
   if (item.category === 'dedicace') return photoSrc('ph-dedicace-vue')
-  if (item.category === 'construction') return photoSrc('ph-toiture-avant')
+  if (item.category === 'construction') return photoSrc('ph-construction-1') || photoSrc('ph-toiture-avant')
   if (item.category === 'reconstruction') return photoSrc('ph-culte-ciel-ouvert')
   if (item.category === 'apres-incendie' || item.category === 'incendie') return photoSrc('ph-facade-apres')
   if (item.type === 'photographies') return photoSrc('ph-dedicace-vue')
@@ -40,7 +40,7 @@ const cover = computed(() => {
 
 function itemPath(item) {
   if (item.type === 'vidéos') return `/mediatheque/${item.id}`
-  if (item.type === 'photographies') return '/galerie'
+  if (item.type === 'photographies') return item.path || '/galerie'
   if (item.type === 'discours') return item.id ? `/voix/pasteur/${item.id}` : '/voix/pasteur'
   if (item.viewerType === 'pdf' || item.type === 'pdf') return `/archives/${item.id}`
   return '/archives'

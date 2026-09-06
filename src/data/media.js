@@ -519,6 +519,49 @@ function photo(fields) {
   }
 }
 
+const constructionAssets = import.meta.glob('@/assets/images/construction/*.{jfif,jpg,jpeg,png,webp,JPG,JPEG}', {
+  eager: true,
+  import: 'default',
+})
+
+function constructionFileName(path) {
+  return path.split(/[/\\]/).pop().replace(/\.[^.]+$/, '')
+}
+
+function constructionSortKey(path) {
+  const name = constructionFileName(path)
+  const match = name.match(/^(\d+)(?:\s*\((\d+)\))?$/)
+  return [match ? Number(match[1]) : 9999, match && match[2] ? Number(match[2]) : 0, name]
+}
+
+function constructionPhotoId(path) {
+  const slug = constructionFileName(path)
+    .replace(/\s*\((\d+)\)/, '-$1')
+    .replace(/\s+/g, '-')
+  return `ph-construction-${slug}`
+}
+
+const constructionAlbum = Object.entries(constructionAssets)
+  .sort(([a], [b]) => {
+    const [na, ea] = constructionSortKey(a)
+    const [nb, eb] = constructionSortKey(b)
+    return na - nb || ea - eb
+  })
+  .map(([path, src], index) =>
+    photo({
+      id: constructionPhotoId(path),
+      title: `Chantier du Temple Moriah — ${String(index + 1).padStart(2, '0')}`,
+      date: '2011-2018',
+      displayDate: '2011 — 2018',
+      year: '2011 — 2018',
+      category: 'construction',
+      event: 'Construction du Temple Moriah',
+      caption: 'Photographie du chantier, 2011 — 2018.',
+      src,
+      order: index + 1,
+    }),
+  )
+
 const dedicaceAlbum = Array.from({ length: 34 }, (_, i) =>
   photo({
     id: `ph-dedicace-${i}`,
@@ -533,6 +576,7 @@ const dedicaceAlbum = Array.from({ length: 34 }, (_, i) =>
 )
 
 const photoList = [
+  ...constructionAlbum,
   ...dedicaceAlbum,
   photo({
     id: 'ph-dedicace-vue',
@@ -691,6 +735,14 @@ export const beforeAfterPairs = [
 ]
 
 export const documents = sortChrono([
+  {
+    id: 'doc-album-construction',
+    type: 'photographies',
+    title: 'Album — Chantier du Temple Moriah',
+    date: '2011-2018',
+    category: 'construction',
+    description: 'Photographies du chantier, 2011 — 2018.',
+  },
   {
     id: 'doc-album-dedicace',
     type: 'photographies',

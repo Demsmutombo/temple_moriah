@@ -4,6 +4,7 @@ import PeriodNav from '@/components/navigation/PeriodNav.vue'
 import EditorialIntro from '@/components/common/EditorialIntro.vue'
 import MediaTextCard from '@/components/common/MediaTextCard.vue'
 import ChapterVideos from '@/components/video/ChapterVideos.vue'
+import ChapterPhotos from '@/components/gallery/ChapterPhotos.vue'
 import { constructionStages, CONTENT_KINDS } from '@/data'
 import { photoSrc } from '@/utils/archiveImage'
 </script>
@@ -32,6 +33,7 @@ import { photoSrc } from '@/utils/archiveImage'
           :body="stage.description"
         />
       </div>
+      <ChapterPhotos category="construction" />
       <ChapterVideos category="construction" />
       <div class="story-cta">
         <RouterLink to="/dedicace" class="neu-btn-primary">Lire la dédicace</RouterLink>

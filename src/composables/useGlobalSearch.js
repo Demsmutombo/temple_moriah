@@ -63,7 +63,7 @@ function buildIndex() {
       date: p.displayDate,
       category: 'Photos',
       excerpt: p.caption || p.event,
-      to: '/galerie',
+      to: p.category === 'construction' ? '/construction' : '/galerie',
       search: hay(p.title, p.caption, p.context, p.event, p.displayDate),
     })
   })
